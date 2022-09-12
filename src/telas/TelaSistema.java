@@ -12,17 +12,19 @@ import javax.swing.JMenuItem;
 public class TelaSistema extends JFrame implements ActionListener {
     
     private JDesktopPane jdp = new JDesktopPane();
-    
     private JMenu jmCadastros = new JMenu("Cadastros");
     private JMenu jmMovimentos = new JMenu("Movimentos");
     private JMenu jmRelatorios = new JMenu("Relatórios");
     
+    
+
     private JMenuBar jmb = new JMenuBar();
     
     private JMenuItem jmiPais = new JMenuItem("Pais");
     private JMenuItem jmiEstado = new JMenuItem("Estado");
     private JMenuItem jmiCidade = new JMenuItem("Cidade");
     private JMenuItem jmiContribuinte = new JMenuItem("Contribuinte");
+    private JMenuItem jmiIntimacao = new JMenuItem("Intimação");
 
     public TelaSistema(String titulo) {
         setTitle(titulo);
@@ -44,6 +46,7 @@ public class TelaSistema extends JFrame implements ActionListener {
         adicionarMenuItem(jmCadastros, jmiEstado);     
         adicionarMenuItem(jmCadastros, jmiCidade);
         adicionarMenuItem(jmCadastros, jmiContribuinte);
+        adicionarMenuItem(jmCadastros, jmiIntimacao);
            
     }
     
@@ -67,8 +70,11 @@ public class TelaSistema extends JFrame implements ActionListener {
              jdp.add(telaCadastroCidade);
              
         } else if (ae.getSource() == jmiContribuinte) {
-             TelaCadastroContribuinte telaCadastroFornecedor = new TelaCadastroContribuinte();
-              jdp.add(telaCadastroFornecedor);
+             TelaCadastroContribuinte telaCadastroContribuinte = new TelaCadastroContribuinte();
+              jdp.add(telaCadastroContribuinte);
+        } else if (ae.getSource() == jmiIntimacao) {
+            TelaCadastroIntimacao telaCadastroIntimacao = new TelaCadastroIntimacao();
+             jdp.add(telaCadastroIntimacao);
         }
     }
 }
