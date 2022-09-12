@@ -1,25 +1,25 @@
 package telas;
 
+import componentes.MeuCampoComboBox;
 import componentes.MeuCampoTexto;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 public class TelaCadastroPais extends TelaCadastro{
      
-    private MeuCampoTexto jtfCodigo = new MeuCampoTexto(5, "Código", false);
-    private MeuCampoTexto jtfNome = new MeuCampoTexto(20, "Nome", true);
-    private MeuCampoTexto jtfAtivo = new MeuCampoTexto(2, "Ativo", false);
+    private MeuCampoTexto mctCodigo = new MeuCampoTexto(5, "Código", false);
+    private MeuCampoTexto mctNome = new MeuCampoTexto(20, "Nome", true);
+    private MeuCampoComboBox mcsnAtivo = new MeuCampoComboBox("Ativo", new Object[][] {{1, "Sim"}, {2, "Não"}}, true);
     
     public TelaCadastroPais(){
         
         super("Cadastro de Pais");
         
-        adicionaComponente(jtfCodigo, 1, 2, 1, 1);
-        adicionaComponente(jtfNome, 2, 2, 1, 3);
-        adicionaComponente(jtfAtivo, 1, 4, 1, 1);
+        adicionaComponente(mctCodigo, 1, 2, 1, 1);
+        adicionaComponente(mctNome, 2, 2, 1, 3);
+        adicionaComponente(mcsnAtivo, 1, 4, 1, 1);
         
         habilitaCampos(false);
         pack();        
         setVisible(true);
     }
+
 }

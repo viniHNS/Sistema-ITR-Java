@@ -1,6 +1,8 @@
 package telas;
 
 import componentes.MeuCampoTexto;
+import componentes.MeuComponente;
+
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -35,7 +38,7 @@ public class TelaCadastro extends JInternalFrame implements ActionListener{
     private JButton jbConfirmar = new JButton("Confirmar");
     private JButton jbCancelar = new JButton("Cancelar");
     private int  qtdeLinhas, qtdeColunas;
-    private List<MeuCampoTexto> campos = new ArrayList();
+    private List<MeuComponente> campos = new ArrayList();
     
 public TelaCadastro(String titulo){
     
@@ -75,11 +78,11 @@ public void habilitaBotoes(){
 }
 
 public void habilitaCampos(boolean status) {
-    for (MeuCampoTexto campo : campos) {
-        campo.setEnabled(status);
+    for (MeuComponente campo : campos) {
+        ((JComponent) campo).setEnabled(status);
     }
     if (status == true && campos.size() > 0) {
-        campos.get(0).requestFocus();
+        ((JComponent)campos.get(0)).requestFocus();
     } 
 }
 
@@ -106,8 +109,8 @@ public void actionPerformed(ActionEvent ae) {
 
 public boolean validaCampos(){
     String errosObrigatorio = "";
-    for (MeuCampoTexto campo : campos) {
-        if (campo.isObrigatorio() && campo.getText().isEmpty()){
+    for (MeuComponente campo : campos) {
+        if (campo.isObrigatorio() && campo.isVazio()){
             errosObrigatorio += campo.getNome() + "\n";
         }
     }
@@ -120,7 +123,7 @@ public boolean validaCampos(){
     }
 }
 
-public void adicionaComponente (MeuCampoTexto componente, int linha, int coluna, int qtdLinhas, int qtdColunas){
+public void adicionaComponente (MeuComponente componente, int linha, int coluna, int qtdLinhas, int qtdColunas){
     
     GridBagConstraints gbc = new GridBagConstraints();
     gbc.gridy = linha;
@@ -140,7 +143,7 @@ public void adicionaComponente (MeuCampoTexto componente, int linha, int coluna,
     painelComponentes.add(jl, gbc);
     gbc.gridx++;
     
-    painelComponentes.add(componente, gbc);
+    painelComponentes.add((JComponent)componente, gbc);
     
     int l, c;
     l = linha + (qtdLinhas - 1);
