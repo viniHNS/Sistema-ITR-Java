@@ -35,5 +35,11 @@ public class MeuCampoCheckBox extends JCheckBox implements MeuComponente{
         return false;
     }
 
+    @Override
+    public boolean isValido() {
+        return true;
+        
+    }
+
     
 }

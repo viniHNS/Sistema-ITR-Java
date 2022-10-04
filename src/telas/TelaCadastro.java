@@ -1,9 +1,7 @@
 package telas;
 
-import componentes.MeuCampoTexto;
 import componentes.MeuComponente;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -98,8 +96,10 @@ public void actionPerformed(ActionEvent ae) {
     } else if (ae.getSource() == jbConsultar) {
         estadoTela = CONSULTANDO;
     } else if (ae.getSource() == jbConfirmar) {
-        estadoTela = PADRAO;
-        habilitaCampos(false);
+        if (validaCampos()) {
+            estadoTela = PADRAO;
+            habilitaCampos(false);
+        }
     } else if (ae.getSource() == jbCancelar) {
         estadoTela = PADRAO;
         habilitaCampos(false);
@@ -109,18 +109,30 @@ public void actionPerformed(ActionEvent ae) {
 
 public boolean validaCampos(){
     String errosObrigatorio = "";
+    String errosValido = "";
+
     for (MeuComponente campo : campos) {
         if (campo.isObrigatorio() && campo.isVazio()){
             errosObrigatorio += campo.getNome() + "\n";
-        }
+        } else {
+            if (!campo.isValido()){
+                errosValido += campo.getNome() + "\n";
+            }
+        }    
     }
-    if (errosObrigatorio.isEmpty()) {
-        return true;
-    } else {
+
+    if (!errosObrigatorio.isEmpty()){
+    
         errosObrigatorio = "Os campos abaixo são obrigatórios\n" + "e não foram preenchidos: \n\n" + errosObrigatorio;
         JOptionPane.showMessageDialog(null, errosObrigatorio);
-        return false;
     }
+
+    if(!errosValido.isEmpty()){
+        errosValido = "Os campos abaixo estão inválidos: \n\n" + errosValido;
+        JOptionPane.showMessageDialog(null, errosValido);
+    }
+    
+    return errosObrigatorio.isEmpty() && errosValido.isEmpty();
 }
 
 public void adicionaComponente (MeuComponente componente, int linha, int coluna, int qtdLinhas, int qtdColunas){
@@ -133,9 +145,11 @@ public void adicionaComponente (MeuComponente componente, int linha, int coluna,
     gbc.insets = new Insets(5, 5, 5, 5);
     gbc.anchor = GridBagConstraints.WEST;
     
+
+    
     String textoLabel = componente.getNome();
     if (componente.isObrigatorio()){
-        textoLabel = textoLabel + "*";
+        textoLabel = textoLabel + "**";
     }
     textoLabel = textoLabel + ": ";
     

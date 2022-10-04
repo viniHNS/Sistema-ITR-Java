@@ -5,5 +5,5 @@ public interface MeuComponente {
     public boolean isVazio();
     public String getNome();
     public String getValor();
-    
+    public boolean isValido();
 }

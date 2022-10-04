@@ -6,8 +6,8 @@ import javax.swing.JRadioButton;
 
 public class MeuCampoSimNao extends JPanel implements MeuComponente{
     private String nome;
-    private JRadioButton jrbSim = new JRadioButton("Sim");
-    private JRadioButton jrbNao = new JRadioButton("Não");
+    private JRadioButton jrbSim = new JRadioButton("S");
+    private JRadioButton jrbNao = new JRadioButton("N");
     private ButtonGroup bg = new ButtonGroup();
 
     public MeuCampoSimNao(String nome){
@@ -29,14 +29,19 @@ public class MeuCampoSimNao extends JPanel implements MeuComponente{
 
     public String getValor(){
         if (jrbSim.isSelected()){
-            return "Sim";
+            return "S";
         } else {
-            return "Não";
+            return "N";
         }
     }
 
     @Override
     public boolean isVazio() {
         return false;
+    }
+
+    @Override
+    public boolean isValido() {
+        return true;
     }
 }

@@ -9,18 +9,18 @@ import javax.swing.JFormattedTextField;
 import javax.swing.border.Border;
 import javax.swing.text.MaskFormatter;
 
-public class MeuCampoCEP extends JFormattedTextField implements MeuComponente{
-
+public class MeuCampoData extends JFormattedTextField implements MeuComponente{
+    
     private String nome;
     private boolean obrigatorio;
 
-    public MeuCampoCEP(String nome, boolean obrigatorio){
+    public MeuCampoData(String nome, boolean obrigatorio){
         
         try {
             this.nome = nome;
             this.obrigatorio = obrigatorio;
             adicionaFocusListener();
-            MaskFormatter mf = new MaskFormatter("#####-###");
+            MaskFormatter mf = new MaskFormatter("##/##/####");
             mf.setPlaceholderCharacter('_');
             mf.install(this);
 
@@ -66,19 +66,12 @@ public class MeuCampoCEP extends JFormattedTextField implements MeuComponente{
 
     @Override
     public boolean isVazio() {
-        return getValor().equals("_____-___");
+        return getValor().equals("__/__/____");
     }
 
     @Override
     public boolean isValido() {
 
-        return getValor().replace("-", "").replace("_", "").length() == 8;
-
-    //    String v1 = getValor();
-    //    String v2 = v1.replace("-", "");
-    //    String v3 = v2.replace("_", "");
-    //    int n = v3.length();
-    //    return n == 8;
-        
+        return getValor().replace("/", "").replace("_", "").length() == 8;
     }
-}
+}    

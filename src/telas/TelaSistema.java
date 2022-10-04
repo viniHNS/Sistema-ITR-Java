@@ -3,6 +3,9 @@ package telas;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -10,23 +13,36 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 public class TelaSistema extends JFrame implements ActionListener {
-    
+
     private JDesktopPane jdp = new JDesktopPane();
     private JMenu jmCadastros = new JMenu("Cadastros");
-    private JMenu jmMovimentos = new JMenu("Movimentos");
+    private JMenu jmMovimentos = new JMenu("Consulta");
     private JMenu jmRelatorios = new JMenu("Relatórios");
-    
-    
 
     private JMenuBar jmb = new JMenuBar();
     
+    //Cadastro
     private JMenuItem jmiPais = new JMenuItem("Pais");
     private JMenuItem jmiEstado = new JMenuItem("Estado");
     private JMenuItem jmiCidade = new JMenuItem("Cidade");
     private JMenuItem jmiContribuinte = new JMenuItem("Contribuinte");
     private JMenuItem jmiIntimacao = new JMenuItem("Intimação");
+    //-------
+
+    //Consulta
+    private JMenuItem jmiConsultaPais = new JMenuItem("Pais");
+    private JMenuItem jmiConsultaEstado = new JMenuItem("Estado");
+    private JMenuItem jmiConsultaCidade = new JMenuItem("Cidade");
+    private JMenuItem jmiConsultaContribuinte = new JMenuItem("Contribuinte");
+    private JMenuItem jmiConsultaIntimacao = new JMenuItem("Intimação");
+    //-------
 
     public TelaSistema(String titulo) {
+        try {
+            setIconImage(ImageIO.read(new File("res/brotar.jpg")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         setTitle(titulo);
         setSize(600, 600);
         setJMenuBar(jmb);
@@ -42,12 +58,21 @@ public class TelaSistema extends JFrame implements ActionListener {
         jmb.add(jmMovimentos);
         jmb.add(jmRelatorios);
         
+        //Cadastro
         adicionarMenuItem(jmCadastros, jmiPais);
         adicionarMenuItem(jmCadastros, jmiEstado);     
         adicionarMenuItem(jmCadastros, jmiCidade);
         adicionarMenuItem(jmCadastros, jmiContribuinte);
         adicionarMenuItem(jmCadastros, jmiIntimacao);
-           
+        //--------
+
+        //Consulta
+        adicionarMenuItem(jmMovimentos, jmiConsultaPais);
+        adicionarMenuItem(jmMovimentos, jmiConsultaEstado);     
+        adicionarMenuItem(jmMovimentos, jmiConsultaCidade);
+        adicionarMenuItem(jmMovimentos, jmiConsultaContribuinte);
+        adicionarMenuItem(jmMovimentos, jmiConsultaIntimacao);
+        //--------   
     }
     
     private void adicionarMenuItem(JMenu menu, JMenuItem itemMenu){
@@ -73,6 +98,9 @@ public class TelaSistema extends JFrame implements ActionListener {
              TelaCadastroContribuinte telaCadastroContribuinte = new TelaCadastroContribuinte();
               jdp.add(telaCadastroContribuinte);
         } else if (ae.getSource() == jmiIntimacao) {
+            TelaCadastroIntimacao telaCadastroIntimacao = new TelaCadastroIntimacao();
+             jdp.add(telaCadastroIntimacao);
+        } else if (ae.getSource() == jmiConsultaPais) {
             TelaCadastroIntimacao telaCadastroIntimacao = new TelaCadastroIntimacao();
              jdp.add(telaCadastroIntimacao);
         }
