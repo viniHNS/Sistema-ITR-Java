@@ -60,4 +60,10 @@ public class MeuCampoTexto extends JTextField implements MeuComponente{
     public boolean isValido() {
         return true;
     }
+
+    @Override
+    public void limpar() {
+        setText("");
+        
+    }
 }

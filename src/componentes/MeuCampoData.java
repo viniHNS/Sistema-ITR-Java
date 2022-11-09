@@ -74,4 +74,10 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente{
 
         return getValor().replace("/", "").replace("_", "").length() == 8;
     }
+
+    @Override
+    public void limpar() {
+        // TODO Auto-generated method stub
+        
+    }
 }    

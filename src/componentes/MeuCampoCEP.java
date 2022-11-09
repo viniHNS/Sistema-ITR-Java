@@ -81,4 +81,10 @@ public class MeuCampoCEP extends JFormattedTextField implements MeuComponente{
     //    return n == 8;
         
     }
+
+    @Override
+    public void limpar() {
+        setText("");
+        
+    }
 }

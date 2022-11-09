@@ -59,10 +59,16 @@ public class MeuCampoNumero extends JTextField implements MeuComponente{
     @Override
     public boolean isValido() {
         String id = getValor();
-        if (id.matches("[0-9]+")) {
+        if (id.matches("^[0-9]*$")) {
             return true;
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void limpar() {
+        setText("");
+        
     }
 }

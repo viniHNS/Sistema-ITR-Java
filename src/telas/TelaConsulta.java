@@ -65,6 +65,8 @@ public class TelaConsulta extends JInternalFrame implements ActionListener{
         jbCancelar.addActionListener(this);
         
         habilitaBotoes();
+
+        
     }
         
     public void habilitaBotoes(){

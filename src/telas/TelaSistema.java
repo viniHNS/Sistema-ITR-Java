@@ -27,6 +27,7 @@ public class TelaSistema extends JFrame implements ActionListener {
     private JMenuItem jmiCidade = new JMenuItem("Cidade");
     private JMenuItem jmiContribuinte = new JMenuItem("Contribuinte");
     private JMenuItem jmiIntimacao = new JMenuItem("Intimação");
+    private JMenuItem jmiPropriedade = new JMenuItem("Propriedade");
     //-------
 
     //Consulta
@@ -35,7 +36,10 @@ public class TelaSistema extends JFrame implements ActionListener {
     private JMenuItem jmiConsultaCidade = new JMenuItem("Cidade");
     private JMenuItem jmiConsultaContribuinte = new JMenuItem("Contribuinte");
     private JMenuItem jmiConsultaIntimacao = new JMenuItem("Intimação");
+    private JMenuItem jmiConsultaGeral = new JMenuItem("Geral");
     //-------
+
+    private JMenuItem jmiRelatorioPais = new JMenuItem("Pais");
 
     public TelaSistema(String titulo) {
         try {
@@ -64,6 +68,7 @@ public class TelaSistema extends JFrame implements ActionListener {
         adicionarMenuItem(jmCadastros, jmiCidade);
         adicionarMenuItem(jmCadastros, jmiContribuinte);
         adicionarMenuItem(jmCadastros, jmiIntimacao);
+        adicionarMenuItem(jmCadastros, jmiPropriedade);
         //--------
 
         //Consulta
@@ -72,8 +77,14 @@ public class TelaSistema extends JFrame implements ActionListener {
         adicionarMenuItem(jmMovimentos, jmiConsultaCidade);
         adicionarMenuItem(jmMovimentos, jmiConsultaContribuinte);
         adicionarMenuItem(jmMovimentos, jmiConsultaIntimacao);
+        adicionarMenuItem(jmMovimentos, jmiConsultaGeral);
         //--------   
+
+        //Relatorio
+        adicionarMenuItem(jmRelatorios, jmiRelatorioPais);
+        //---------
     }
+
     
     private void adicionarMenuItem(JMenu menu, JMenuItem itemMenu){
         menu.add(itemMenu);
@@ -82,6 +93,7 @@ public class TelaSistema extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+
         if (ae.getSource() == jmiPais) {
             TelaCadastroPais telaCadastroPais = new TelaCadastroPais();
             jdp.add(telaCadastroPais);
@@ -100,9 +112,9 @@ public class TelaSistema extends JFrame implements ActionListener {
         } else if (ae.getSource() == jmiIntimacao) {
             TelaCadastroIntimacao telaCadastroIntimacao = new TelaCadastroIntimacao();
              jdp.add(telaCadastroIntimacao);
-        } else if (ae.getSource() == jmiConsultaPais) {
-            TelaCadastroIntimacao telaCadastroIntimacao = new TelaCadastroIntimacao();
-             jdp.add(telaCadastroIntimacao);
-        }
-    }
+        } else if (ae.getSource() == jmiPropriedade) {
+            TelaCadastroPropriedade TelaCadastroPropriedade = new TelaCadastroPropriedade();
+             jdp.add(TelaCadastroPropriedade);
+        }   
+    }    
 }

@@ -50,5 +50,11 @@ public class MeuCampoComboBox extends JComboBox implements MeuComponente {
     public boolean isValido() {
         return true;
     }
+
+    @Override
+    public void limpar() {
+        setSelectedIndex(0);
+        
+    }
     
 }

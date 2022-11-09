@@ -74,4 +74,10 @@ public class MeuCampoNumIntimacao extends JFormattedTextField implements MeuComp
 
         return getValor().replace("/", "").replace("_", "").length() == 8;
     }
+
+    @Override
+    public void limpar() {
+        setText("");
+        
+    }
 }    

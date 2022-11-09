@@ -6,4 +6,5 @@ public interface MeuComponente {
     public String getNome();
     public String getValor();
     public boolean isValido();
+    public void limpar();
 }

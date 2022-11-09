@@ -41,5 +41,11 @@ public class MeuCampoCheckBox extends JCheckBox implements MeuComponente{
         
     }
 
+    @Override
+    public void limpar() {
+        setSelected(false);
+        
+    }
+
     
 }
