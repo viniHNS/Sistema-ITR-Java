@@ -80,6 +80,7 @@ public class EstadoDao {
             return false;
         }
     }
+}
 
     class TesteEstadoDao {
 
@@ -130,4 +131,4 @@ public class EstadoDao {
             }
         }
     }
-}
+

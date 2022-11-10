@@ -76,8 +76,8 @@ public class PaisDao {
             return false;
         }
     }
-
-    class TesteEstadoDao {
+}
+    class TestePaisDao {
 
         public static void main(String args[]) {
             Pais pais = new Pais();
@@ -121,5 +121,5 @@ public class PaisDao {
         }
     }
 
-}
+
 
