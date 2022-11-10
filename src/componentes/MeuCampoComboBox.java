@@ -37,7 +37,7 @@ public class MeuCampoComboBox extends JComboBox implements MeuComponente {
         if (getSelectedIndex() == 0){
             return "";
         } else {
-            return "" + opcoes[getSelectedIndex() - 1][0];
+            return "" + opcoes[getSelectedIndex() - 1][1];
         }
     }
 
