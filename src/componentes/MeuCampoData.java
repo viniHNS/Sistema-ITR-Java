@@ -80,4 +80,9 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente{
         // TODO Auto-generated method stub
         
     }
+
+    @Override
+    public void setValor(Object valor) {
+        setText((String) valor);
+    }
 }    

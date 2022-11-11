@@ -14,7 +14,7 @@ import javax.swing.JMenuItem;
 
 public class TelaSistema extends JFrame implements ActionListener {
 
-    private JDesktopPane jdp = new JDesktopPane();
+    public static JDesktopPane jdp = new JDesktopPane();
     private JMenu jmCadastros = new JMenu("Cadastros");
     private JMenu jmMovimentos = new JMenu("Consulta");
     private JMenu jmRelatorios = new JMenu("Relatórios");
@@ -30,14 +30,6 @@ public class TelaSistema extends JFrame implements ActionListener {
     private JMenuItem jmiPropriedade = new JMenuItem("Propriedade");
     //-------
 
-    //Consulta
-    private JMenuItem jmiConsultaPais = new JMenuItem("Pais");
-    private JMenuItem jmiConsultaEstado = new JMenuItem("Estado");
-    private JMenuItem jmiConsultaCidade = new JMenuItem("Cidade");
-    private JMenuItem jmiConsultaContribuinte = new JMenuItem("Contribuinte");
-    private JMenuItem jmiConsultaIntimacao = new JMenuItem("Intimação");
-    private JMenuItem jmiConsultaGeral = new JMenuItem("Geral");
-    //-------
 
     private JMenuItem jmiRelatorioPais = new JMenuItem("Pais");
 
@@ -70,15 +62,7 @@ public class TelaSistema extends JFrame implements ActionListener {
         adicionarMenuItem(jmCadastros, jmiIntimacao);
         adicionarMenuItem(jmCadastros, jmiPropriedade);
         //--------
-
-        //Consulta
-        adicionarMenuItem(jmMovimentos, jmiConsultaPais);
-        adicionarMenuItem(jmMovimentos, jmiConsultaEstado);     
-        adicionarMenuItem(jmMovimentos, jmiConsultaCidade);
-        adicionarMenuItem(jmMovimentos, jmiConsultaContribuinte);
-        adicionarMenuItem(jmMovimentos, jmiConsultaIntimacao);
-        adicionarMenuItem(jmMovimentos, jmiConsultaGeral);
-        //--------   
+ 
 
         //Relatorio
         adicionarMenuItem(jmRelatorios, jmiRelatorioPais);

@@ -66,4 +66,9 @@ public class MeuCampoTexto extends JTextField implements MeuComponente{
         setText("");
         
     }
+
+    @Override
+    public void setValor(Object valor) {
+        setText((String) valor);
+    }
 }

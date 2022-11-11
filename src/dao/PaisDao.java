@@ -12,6 +12,7 @@ public class PaisDao {
     public final String SQL_ALTERAR = "UPDATE PAIS SET nomePais = ?, ativoPais = ? WHERE idPais = ?";
     public final String SQL_EXCLUIR = "DELETE FROM PAIS WHERE idPais = ?";
     public final String SQL_CONSULTAR = "SELECT * FROM PAIS WHERE idPais = ?";
+    public final static String SQL_PESQUISAR = "SELECT * FROM Pais";
 
     public boolean incluir(Pais pais){
         try {
@@ -59,7 +60,7 @@ public class PaisDao {
 
     public boolean consultar(Pais pais){
         try {
-            PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_EXCLUIR);
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_CONSULTAR);
             ps.setInt(1, pais.getIdPais());
             ResultSet rs = ps.executeQuery();
             if (rs.next()){

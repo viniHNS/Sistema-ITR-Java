@@ -7,4 +7,5 @@ public interface MeuComponente {
     public String getValor();
     public boolean isValido();
     public void limpar();
+    public void setValor(Object valor);
 }

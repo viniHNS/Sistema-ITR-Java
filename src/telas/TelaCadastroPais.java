@@ -64,8 +64,18 @@ public class TelaCadastroPais extends TelaCadastro{
 
     @Override
     public boolean consultar() {
-        // TODO Auto-generated method stub
-        return false;
+        new TelaConsulta(this, "Consulta de Pais", new String []{"Código", "Nome", "Ativo"}, PaisDao.SQL_PESQUISAR);
+        return true;
+    }
+
+    @Override
+    public void preencherDados(int id) {
+        pais.setIdPais(id);
+        paisDao.consultar(pais);
+        mctCodigo.setValor("" + pais.getIdPais() );
+        mctNome.setValor(pais.getNomePais());
+        mcsnAtivo.setValor(pais.getAtivoPais() == 'S' ? "SIM" : "NÃO");
+        super.preencherDados(id);
     }
 
 }

@@ -80,4 +80,9 @@ public class MeuCampoNumIntimacao extends JFormattedTextField implements MeuComp
         setText("");
         
     }
+
+    @Override
+    public void setValor(Object valor) {
+        setText((String) valor);
+    }
 }    

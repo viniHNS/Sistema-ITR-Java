@@ -47,5 +47,11 @@ public class MeuCampoCheckBox extends JCheckBox implements MeuComponente{
         
     }
 
+    @Override
+    public void setValor(Object valor) {
+        // TODO Auto-generated method stub
+        
+    }
+
     
 }

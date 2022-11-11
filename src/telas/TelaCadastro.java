@@ -102,6 +102,7 @@ public void actionPerformed(ActionEvent ae) {
         estadoTela = EXCLUINDO;
     } else if (ae.getSource() == jbConsultar) {
         estadoTela = CONSULTANDO;
+        consultar();
     } else if (ae.getSource() == jbConfirmar) {
         if (validaCampos()) {
             if(estadoTela == INCLUINDO){
@@ -203,6 +204,11 @@ public void adicionaComponente (MeuComponente componente, int linha, int coluna,
     campos.add(componente);
 }
 
+public void preencherDados(int pk){
+    estadoTela = PADRAO;
+    temDadosNaTela = true;
+    habilitaBotoes();  
+}
 
 
 }
