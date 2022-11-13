@@ -44,7 +44,7 @@ public class MeuCampoTexto extends JTextField implements MeuComponente{
             @Override
             public void focusGained(FocusEvent fe) {
                setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
-               setBackground(new Color(200, 250, 255));
+               setBackground(new Color(200, 200, 200));
             }
 
             @Override

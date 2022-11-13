@@ -16,7 +16,7 @@ public class TelaCadastroPais extends TelaCadastro{
             super.setEnabled(false);
         }
     };
-    private MeuCampoTexto mctNome = new MeuCampoTexto(30, "Nome", true);
+    private MeuCampoTexto mctNome = new MeuCampoTexto(40, "Nome", true);
     private MeuCampoComboBox mcsnAtivo = new MeuCampoComboBox("Ativo", new Object[][] {{1, "S"}, {2, "N"}}, true);
     
     public TelaCadastroPais(){
@@ -74,7 +74,7 @@ public class TelaCadastroPais extends TelaCadastro{
         paisDao.consultar(pais);
         mctCodigo.setValor("" + pais.getIdPais() );
         mctNome.setValor(pais.getNomePais());
-        mcsnAtivo.setValor(pais.getAtivoPais() == 'S' ? "SIM" : "NÃO");
+        mcsnAtivo.setValor(pais.getAtivoPais() == 'S' ? 1 : 2);
         super.preencherDados(id);
     }
 
