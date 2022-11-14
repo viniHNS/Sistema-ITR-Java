@@ -42,7 +42,7 @@ public class TelaCadastroPais extends TelaCadastro{
     public boolean incluir() {
         setaPojoPais();
         boolean resultado = paisDao.incluir(pais);
-        if(resultado = true) {
+        if(resultado == true) {
             mctCodigo.setText(String.valueOf(pais.getIdPais()));
         }
         return resultado;

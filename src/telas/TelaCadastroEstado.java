@@ -2,10 +2,19 @@ package telas;
 
 import componentes.MeuCampoComboBox;
 import componentes.MeuCampoTexto;
+import dao.EstadoDao;
+import pojo.Estado;
 
 public class TelaCadastroEstado extends TelaCadastro{
 
-    private MeuCampoTexto mctCodigo = new MeuCampoTexto(5, "Código", true);
+    private Estado estado = new Estado();
+    private EstadoDao estadoDao = new EstadoDao();
+
+    private MeuCampoTexto mctCodigo = new MeuCampoTexto(5, "Código", false){
+        public void setEnabled(boolean status){
+            super.setEnabled(false);
+        }
+    };
     private MeuCampoTexto mctNome = new MeuCampoTexto(30, "Nome", true);
     private MeuCampoTexto mctNomeUf = new MeuCampoTexto(5, "UF", true);
     private MeuCampoComboBox mcsnAtivo = new MeuCampoComboBox("Ativo", new Object[][] {{1, "Sim"}, {2, "Não"}}, true);
@@ -24,27 +33,49 @@ public class TelaCadastroEstado extends TelaCadastro{
         setVisible(true);
     }
 
+    public void setaPojoEstado(){
+        estado.setIdEstado(Integer.parseInt("0" + mctCodigo.getValor()));
+        estado.setNomeEstado(mctNome.getValor());
+        estado.setUfEstado(mctNomeUf.getValor());
+        estado.setAtivoEstado(mcsnAtivo.getValor().charAt(0));
+    }
+
     @Override
     public boolean incluir() {
-        // TODO Auto-generated method stub
-        return false;
+        setaPojoEstado();
+        boolean resultado = estadoDao.incluir(estado);
+        if(resultado == true){
+            mctCodigo.setText(String.valueOf(estado.getIdEstado()));
+        }
+        return resultado;
     }
 
     @Override
     public boolean alterar() {
-        // TODO Auto-generated method stub
-        return false;
+        setaPojoEstado();
+        return estadoDao.alterar(estado);
     }
 
     @Override
     public boolean excluir() {
-        // TODO Auto-generated method stub
-        return false;
+        setaPojoEstado();
+        return estadoDao.excluir(estado);
     }
 
     @Override
     public boolean consultar() {
-        // TODO Auto-generated method stub
+        new TelaConsulta(this, "Consulta de Estado", new String []{"Código", "Nome", "UF", "Ativo"}, EstadoDao.SQL_PESQUISAR);
         return false;
+    }
+
+    @Override
+    public void preencherDados(int id){
+        estado.setIdEstado(id);
+        estadoDao.consultar(estado);
+        mctCodigo.setValor("" + estado.getIdEstado());
+        mctNome.setValor(estado.getNomeEstado());
+        mctNomeUf.setValor(estado.getUfEstado());
+        mcsnAtivo.setValor(estado.getAtivoEstado() == 'S' ? 1 : 2);
+        super.preencherDados(id);
     }
 }

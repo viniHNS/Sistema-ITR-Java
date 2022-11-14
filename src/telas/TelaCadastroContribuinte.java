@@ -37,10 +37,6 @@ public class TelaCadastroContribuinte extends TelaCadastro{
         adicionaComponente(mctBairro, 8,2,1,1);
         adicionaComponente(mctComplemento, 9,2,1,1);
 
-
-         
-        
-
         habilitaCampos(false);
         pack();
         setVisible(true);
