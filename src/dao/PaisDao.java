@@ -33,9 +33,9 @@ public class PaisDao {
     public boolean alterar(Pais pais){
         try {
             PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_ALTERAR);
-            ps.setInt(1, pais.getIdPais());
-            ps.setString(2, pais.getNomePais());
-            ps.setString(3, "" + pais.getAtivoPais());
+            ps.setInt(3, pais.getIdPais());
+            ps.setString(1, pais.getNomePais());
+            ps.setString(2, "" + pais.getAtivoPais());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {

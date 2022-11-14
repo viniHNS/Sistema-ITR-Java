@@ -12,6 +12,7 @@ public class EstadoDao {
     public final String SQL_ALTERAR = "UPDATE ESTADO SET nomeEstado = ?, ufEstado = ?, ativoEstado = ? WHERE idEstado = ?";
     public final String SQL_EXCLUIR = "DELETE FROM ESTADO WHERE idEstado = ?";
     public final String SQL_CONSULTAR = "SELECT * FROM ESTADO WHERE idEstado = ?";
+    public final static String SQL_PESQUISAR = "SELECT * FROM Estado";
 
     public boolean incluir(Estado estado){
         try {
@@ -21,7 +22,7 @@ public class EstadoDao {
             ps.setString(2, estado.getNomeEstado());
             ps.setString(3, estado.getUfEstado());
             ps.setString(4, "" + estado.getAtivoEstado());
-            ps.setInt(5, estado.getIdPais());
+            ps.setInt(5, estado.getIdEstado());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -34,10 +35,10 @@ public class EstadoDao {
     public boolean alterar(Estado estado){
         try {
             PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_ALTERAR);
-            ps.setInt(1, estado.getIdEstado());
-            ps.setString(2, estado.getNomeEstado());
-            ps.setString(3, estado.getUfEstado());
-            ps.setString(4, "" + estado.getAtivoEstado());
+            ps.setInt(4, estado.getIdEstado());
+            ps.setString(1, estado.getNomeEstado());
+            ps.setString(2, estado.getUfEstado());
+            ps.setString(3, "" + estado.getAtivoEstado());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -62,8 +63,8 @@ public class EstadoDao {
 
     public boolean consultar(Estado estado){
         try {
-            PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_EXCLUIR);
-            ps.setInt(1, estado.getIdPais());
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_CONSULTAR);
+            ps.setInt(1, estado.getIdEstado());
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
                 estado.setNomeEstado(rs.getString("nomeEstado"));
@@ -76,7 +77,7 @@ public class EstadoDao {
             
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Não foi possivel consultar o Pais");
+            JOptionPane.showMessageDialog(null, "Não foi possivel consultar o Estado");
             return false;
         }
     }
@@ -88,13 +89,13 @@ public class EstadoDao {
             Estado estado = new Estado();
             EstadoDao EstadoDao = new EstadoDao();
             String id = JOptionPane.showInputDialog(null, "Informe o Id");
-            String idPais = JOptionPane.showInputDialog(null, "Informe o ID do pais para ser vinculado");
+            String idEstado = JOptionPane.showInputDialog(null, "Informe o ID do estado para ser vinculado");
             String nome = JOptionPane.showInputDialog(null, "Informe o Nome do estado");
             String uf = JOptionPane.showInputDialog(null, "Informe a sigla UF");
             String ativo = JOptionPane.showInputDialog(null, "Informe se está ativo", "S");
     
             estado.setIdEstado(Integer.parseInt(id));
-            estado.setIdPais(Integer.parseInt("0" + idPais));
+            estado.setIdEstado(Integer.parseInt("0" + idEstado));
             estado.setNomeEstado(nome);
             estado.setUfEstado(uf);
             estado.setAtivoEstado(ativo.charAt(0));
@@ -124,7 +125,7 @@ public class EstadoDao {
                 System.out.println("ID: " + estado.getIdEstado());
                 System.out.println("NOME: " + estado.getNomeEstado());
                 System.out.println("UF: " + estado.getUfEstado());
-                System.out.println("ID PAIS: " + estado.getIdPais());
+                System.out.println("ID ESTADO: " + estado.getIdEstado());
                 System.out.println("ATIVO: " + estado.getAtivoEstado());
             } else {
                 System.out.println("Erro ao tentar executar a operação no banco de dados");
