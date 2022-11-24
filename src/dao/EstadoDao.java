@@ -13,6 +13,8 @@ public class EstadoDao {
     public final String SQL_EXCLUIR = "DELETE FROM ESTADO WHERE idEstado = ?";
     public final String SQL_CONSULTAR = "SELECT * FROM ESTADO WHERE idEstado = ?";
     public final static String SQL_PESQUISAR = "SELECT * FROM Estado";
+    public final static String SQL_COMBOBOX = "SELECT idEstado, nomeEstado || ' - ' || ufEstado FROM Estado ORDER BY nomeEstado";
+    
 
     public boolean incluir(Estado estado){
         try {

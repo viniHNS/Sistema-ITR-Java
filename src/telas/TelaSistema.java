@@ -18,7 +18,7 @@ public class TelaSistema extends JFrame implements ActionListener {
     private JMenu jmCadastros = new JMenu("Cadastros");
     private JMenu jmMovimentos = new JMenu("Consulta");
     private JMenu jmRelatorios = new JMenu("Relatórios");
-
+    
     private JMenuBar jmb = new JMenuBar();
     
     //Cadastro

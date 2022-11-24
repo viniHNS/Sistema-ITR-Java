@@ -1,8 +1,6 @@
 package telas;
 
 import componentes.MeuCampoComboBox;
-import componentes.MeuCampoData;
-import componentes.MeuCampoNumIntimacao;
 import componentes.MeuCampoNumero;
 import componentes.MeuCampoTexto;
 

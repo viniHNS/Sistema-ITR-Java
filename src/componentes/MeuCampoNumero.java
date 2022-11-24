@@ -76,6 +76,4 @@ public class MeuCampoNumero extends JTextField implements MeuComponente{
     public void setValor(Object valor) {
         setText((String) valor);
     }
-
-    
 }
