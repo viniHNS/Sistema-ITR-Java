@@ -39,7 +39,11 @@ public class MeuCampoDBComboBox extends JComboBox implements MeuComponente{
 
     @Override
     public boolean isVazio() {
-        return true;
+        if (getSelectedIndex() < 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

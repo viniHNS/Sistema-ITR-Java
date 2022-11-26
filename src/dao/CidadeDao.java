@@ -12,7 +12,7 @@ public class CidadeDao {
     public final String SQL_ALTERAR = "UPDATE Cidade SET cepCidade = ?, nomeCidade = ?, ativoCidade = ? WHERE idCidade = ?";
     public final String SQL_EXCLUIR = "DELETE FROM Cidade WHERE idCidade = ?";
     public final String SQL_CONSULTAR = "SELECT * FROM Cidade WHERE idCidade = ?";
-    public final static String SQL_PESQUISAR = "SELECT * FROM Cidade";
+    public final static String SQL_PESQUISAR = "SELECT IDCIDADE, NOMECIDADE, NOMEESTADO , CEPCIDADE, ATIVOCIDADE FROM CIDADE JOIN Estado ON Cidade.IdEstado = Estado.IdEstado";
     public final static String SQL_COMBOBOX = "SELECT idCidade, nomeCidade, UfEstado, CepCidade, AtivoCidade FROM Cidade JOIN Estado ON Cidade.IdEstado = Estado.IdEstado ORDER BY NomeCidade";
 
     public boolean incluir(Cidade cidade){
@@ -35,13 +35,13 @@ public class CidadeDao {
 
     public boolean alterar(Cidade cidade){
         try {
-            PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_EXCLUIR);
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_ALTERAR);
             ps.setInt(1, cidade.getIdCidade());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Não foi possivel excluir a Cidade");
+            JOptionPane.showMessageDialog(null, "Não foi possivel alterar a Cidade");
             return false;
         }
     }
@@ -65,6 +65,7 @@ public class CidadeDao {
             ps.setInt(1, cidade.getIdCidade());
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
+                cidade.setIdEstado(Integer.parseInt(rs.getString("idEstado")));
                 cidade.setNomeCidade(rs.getString("nomeCidade"));
                 cidade.setCepCidade(rs.getString("cepCidade"));
                 cidade.setAtivoCidade(rs.getString("ativoCidade").charAt(0));

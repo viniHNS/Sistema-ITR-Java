@@ -90,7 +90,6 @@ public class MeuCampoCEP extends JFormattedTextField implements MeuComponente{
 
     @Override
     public void setValor(Object valor) {
-        // TODO Auto-generated method stub
-        
+        setText((String) valor);    
     }
 }

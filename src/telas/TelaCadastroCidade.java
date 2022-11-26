@@ -81,6 +81,7 @@ public class TelaCadastroCidade extends TelaCadastro{
     public void preencherDados(int id){
         cidade.setIdCidade(id);
         cidadeDao.consultar(cidade);
+        mcCEP.setValor(cidade.getCepCidade());
         mctCodigo.setValor("" + cidade.getIdCidade());
         mctNome.setValor(cidade.getNomeCidade());
         mcsnUF.setValor(cidade.getIdEstado());
