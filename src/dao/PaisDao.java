@@ -13,6 +13,7 @@ public class PaisDao {
     public final String SQL_EXCLUIR = "DELETE FROM PAIS WHERE idPais = ?";
     public final String SQL_CONSULTAR = "SELECT * FROM PAIS WHERE idPais = ?";
     public final static String SQL_PESQUISAR = "SELECT * FROM Pais";
+    public final static String SQL_COMBOBOX = "SELECT nomePais FROM Pais ORDER BY nomePais";
 
     public boolean incluir(Pais pais){
         try {

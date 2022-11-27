@@ -2,8 +2,10 @@ package telas;
 
 import componentes.MeuCampoCEP;
 import componentes.MeuCampoComboBox;
+import componentes.MeuCampoDBComboBox;
 import componentes.MeuCampoNumero;
 import componentes.MeuCampoTexto;
+import dao.CidadeDao;
 
 public class TelaCadastroContribuinte extends TelaCadastro{
 
@@ -13,8 +15,8 @@ public class TelaCadastroContribuinte extends TelaCadastro{
     private MeuCampoNumero mcnCPF = new MeuCampoNumero(10, "CPF", true);
     private MeuCampoNumero mcnTelefone = new MeuCampoNumero(10, "Telefone", false);
     private MeuCampoCEP mcCEP = new MeuCampoCEP("CEP", true);
-    private MeuCampoTexto mctCidade = new MeuCampoTexto(10, "Cidade", false);
-    private MeuCampoTexto mctEstado = new MeuCampoTexto(10, "Estado", false);
+    private MeuCampoDBComboBox mccbCidade = new MeuCampoDBComboBox(true, CidadeDao.SQL_COMBOBOX, "Cidade");
+    
     private MeuCampoTexto mctLogradouro = new MeuCampoTexto(40, "Logradouro", true);
     private MeuCampoTexto mctNumero = new MeuCampoTexto(10, "Numero", true);
     private MeuCampoTexto mctBairro = new MeuCampoTexto(25, "Bairro", true);
@@ -30,8 +32,7 @@ public class TelaCadastroContribuinte extends TelaCadastro{
         adicionaComponente(mcnCPF, 3, 2, 1, 1);
         adicionaComponente(mcnTelefone, 3, 4, 1, 1);
         adicionaComponente(mcCEP, 4,2,1,1);
-        adicionaComponente(mctCidade, 5,2,1,4);
-        adicionaComponente(mctEstado, 5,4,1,1);
+        adicionaComponente(mccbCidade, 5,2,1,4);
         adicionaComponente(mctLogradouro, 6,2,1,1);
         adicionaComponente(mctNumero, 7,2,1,1);
         adicionaComponente(mctBairro, 8,2,1,1);

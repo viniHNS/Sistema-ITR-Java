@@ -1,8 +1,10 @@
 package telas;
 
 import componentes.MeuCampoComboBox;
+import componentes.MeuCampoDBComboBox;
 import componentes.MeuCampoTexto;
 import dao.EstadoDao;
+import dao.PaisDao;
 import pojo.Estado;
 
 public class TelaCadastroEstado extends TelaCadastro{
@@ -17,6 +19,7 @@ public class TelaCadastroEstado extends TelaCadastro{
     };
     private MeuCampoTexto mctNome = new MeuCampoTexto(30, "Nome", true);
     private MeuCampoTexto mctNomeUf = new MeuCampoTexto(5, "UF", true);
+    private MeuCampoDBComboBox mccbPais = new MeuCampoDBComboBox(true, PaisDao.SQL_COMBOBOX, "Pais"); 
     private MeuCampoComboBox mcsnAtivo = new MeuCampoComboBox("Ativo", new Object[][] {{1, "Sim"}, {2, "Não"}}, true);
 
     public TelaCadastroEstado(){
@@ -24,8 +27,9 @@ public class TelaCadastroEstado extends TelaCadastro{
         super("Cadastro de Estado");
 
         adicionaComponente(mctCodigo, 1, 1, 1, 1);
-        adicionaComponente(mctNome, 2, 1, 1, 2);
-        adicionaComponente(mctNomeUf, 2, 4, 1, 1);
+        adicionaComponente(mccbPais, 2, 1, 1, 1);
+        adicionaComponente(mctNome, 3, 1, 1, 2);
+        adicionaComponente(mctNomeUf, 3, 4, 1, 1);
         adicionaComponente(mcsnAtivo, 4, 1, 1, 1);
 
         habilitaCampos(false);
@@ -75,6 +79,7 @@ public class TelaCadastroEstado extends TelaCadastro{
         mctCodigo.setValor("" + estado.getIdEstado());
         mctNome.setValor(estado.getNomeEstado());
         mctNomeUf.setValor(estado.getUfEstado());
+        mccbPais.setValor(estado.getIdPais());
         mcsnAtivo.setValor(estado.getAtivoEstado() == 'S' ? 1 : 2);
         super.preencherDados(id);
     }

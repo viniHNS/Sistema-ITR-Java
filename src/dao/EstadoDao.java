@@ -15,6 +15,7 @@ public class EstadoDao {
     public final static String SQL_PESQUISAR = "SELECT * FROM Estado";
     public final static String SQL_COMBOBOX = "SELECT idEstado, nomeEstado || ' - ' || ufEstado FROM Estado ORDER BY nomeEstado";
     
+    
 
     public boolean incluir(Estado estado){
         try {
@@ -24,7 +25,7 @@ public class EstadoDao {
             ps.setString(2, estado.getNomeEstado());
             ps.setString(3, estado.getUfEstado());
             ps.setString(4, "" + estado.getAtivoEstado());
-            ps.setInt(5, estado.getIdEstado());
+            ps.setInt(5, estado.getIdPais());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
