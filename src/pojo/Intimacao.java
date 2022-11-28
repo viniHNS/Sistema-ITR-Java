@@ -1,6 +1,6 @@
 package pojo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Intimacao {
     private int idIntimacao;
@@ -8,8 +8,8 @@ public class Intimacao {
     private String numConstatacao;
     private String numIntimacaoConstatacao;
     private String codRastreioIntimacao;
-    private Date dataPostagemIntimacao;
-    private Date dataEntregaIntimacao;
+    private String dataPostagemIntimacao; //date
+    private String dataEntregaIntimacao; //date
     private char ativoIntimacao; 
     private int idPropriedade;
 
@@ -54,19 +54,19 @@ public class Intimacao {
         this.codRastreioIntimacao = codRastreioIntimacao;
     }
 
-    public Date getDataPostagemIntimacao() {
+    public String getDataPostagemIntimacao() {
         return this.dataPostagemIntimacao;
     }
 
-    public void setDataPostagemIntimacao(Date dataPostagemIntimacao) {
+    public void setDataPostagemIntimacao(String dataPostagemIntimacao) {
         this.dataPostagemIntimacao = dataPostagemIntimacao;
     }
 
-    public Date getDataEntregaIntimacao() {
+    public String getDataEntregaIntimacao() {
         return this.dataEntregaIntimacao;
     }
 
-    public void setDataEntregaIntimacao(Date dataEntregaIntimacao) {
+    public void setDataEntregaIntimacao(String dataEntregaIntimacao) {
         this.dataEntregaIntimacao = dataEntregaIntimacao;
     }
 

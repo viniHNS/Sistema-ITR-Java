@@ -4,10 +4,19 @@ import componentes.MeuCampoComboBox;
 import componentes.MeuCampoData;
 import componentes.MeuCampoNumIntimacao;
 import componentes.MeuCampoTexto;
+import dao.IntimacaoDao;
+import pojo.Intimacao;
 
 public class TelaCadastroIntimacao extends TelaCadastro{
 
-    private MeuCampoTexto mctCodigo = new MeuCampoTexto(5, "Código", false);
+    private Intimacao intimacao = new Intimacao();
+    private IntimacaoDao intimacaoDao = new IntimacaoDao();
+
+    private MeuCampoTexto mctCodigo = new MeuCampoTexto(5, "Código", false){
+        public void setEnabled(boolean status){
+            super.setEnabled(false);
+        }
+    };
     private MeuCampoTexto mctNome = new MeuCampoTexto(20, "Nome", true);
     private MeuCampoComboBox mcsnAtivo = new MeuCampoComboBox("Ativo", new Object[][] {{1, "Sim"}, {2, "Não"}}, true);
     private MeuCampoData mcdDataEntrega = new MeuCampoData("Data Entrega", false);

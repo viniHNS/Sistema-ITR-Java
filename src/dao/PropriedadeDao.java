@@ -13,7 +13,7 @@ public class PropriedadeDao {
     public final String SQL_EXCLUIR = "DELETE FROM PROPRIEDADE WHERE IDPROPRIEDADE = ?";
     public final String SQL_CONSULTAR = " SELECT * FROM PROPRIEDADE WHERE IDPROPRIEDADE = ?";
     public final static String SQL_PESQUISAR = "SELECT * FROM PROPRIEDADE";
-    public final static String SQL_COMBOBOX = "SELECT IDPROPRIEDADE, NOMEPROPRIEDADE FROM PROPRIEDADE ORDER BY NOMEPROPRIEDADE";
+    public final static String SQL_COMBOBOX = "SELECT IDPROPRIEDADE, NOMEPROPRIEDADE, AREATOTALPROPRIEDADE, NIRFPROPRIEDADE, STATUSPROPRIEDADE, ATIVOPROPRIEDADE FROM PROPRIEDADE ORDER BY NOMEPROPRIEDADE";
 
     public boolean incluir(Propriedade propriedade){
         try {
@@ -76,9 +76,9 @@ public class PropriedadeDao {
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
                 propriedade.setNomePropriedade(rs.getString("nomePropriedade"));
-                propriedade.setNirfPropriedade(rs.getString("nomeNirf"));
+                propriedade.setNirfPropriedade(rs.getString("NirfPropriedade"));
                 propriedade.setAreaTotalPropriedade(rs.getString("AreaTotalPropriedade"));
-                propriedade.setParametroSelecaoPropriedade(rs.getString("parametroSelecao"));
+                propriedade.setParametroSelecaoPropriedade(rs.getString("parametroSelecaoPropriedade"));
                 propriedade.setStatusPropriedade(rs.getString("statusPropriedade"));
                 propriedade.setAtivoPropriedade(rs.getString("ativoPropriedade").charAt(0));
                 return true;

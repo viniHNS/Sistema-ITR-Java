@@ -23,7 +23,7 @@ public class TelaCadastroPropriedade extends TelaCadastro{
     private MeuCampoComboBox mcsnAtivo = new MeuCampoComboBox("Ativo", new Object[][] {{1, "Sim"}, {2, "Não"}}, true);
     private MeuCampoNumero mcnNIRF = new MeuCampoNumero(5, "NIRF", true);
     private MeuCampoNumero mcnArea = new MeuCampoNumero(5, "Area Total", true);
-    private MeuCampoDBComboBox mccbContribuinte = new MeuCampoDBComboBox(true, PropriedadeDao.SQL_COMBOBOX, "Propriedade");
+    private MeuCampoDBComboBox mccbContribuinte = new MeuCampoDBComboBox(true, PropriedadeDao.SQL_COMBOBOX, "Contribuinte");
     private MeuCampoComboBox mccbSituacao = new MeuCampoComboBox("Situação", new Object[][] {{1, "Em análise"},{2, "Liberado"}, {3, "Protocolado"}, {4, "Vencido"}, {5, "Levar RFB"}}, true);
 
     public TelaCadastroPropriedade() {
@@ -48,7 +48,7 @@ public class TelaCadastroPropriedade extends TelaCadastro{
         propriedade.setNomePropriedade(mctNome.getValor());
         propriedade.setNirfPropriedade(mcnNIRF.getValor());
         propriedade.setAreaTotalPropriedade(mcnArea.getValor());
-        propriedade.getStatusPropriedade(mccbContribuinte.getValor());
+        propriedade.setStatusPropriedade(mccbSituacao.getValor());
         propriedade.setIdContribuinte(Integer.parseInt(mccbContribuinte.getValor()));
     }
 
@@ -76,7 +76,7 @@ public class TelaCadastroPropriedade extends TelaCadastro{
 
     @Override
     public boolean consultar() {
-        new TelaConsulta(this, "Consulta de Propriedade", new String[]{"Código", "Nome", "Área", "NIRF", "Status", "Ativo"}, ContribuinteDao.SQL_COMBOBOX);
+        new TelaConsulta(this, "Consulta de Propriedade", new String[]{"Código", "Nome", "Área", "NIRF", "Status", "Ativo"}, PropriedadeDao.SQL_COMBOBOX);
         return false;
     }
 
@@ -88,7 +88,18 @@ public class TelaCadastroPropriedade extends TelaCadastro{
         mctNome.setValor(propriedade.getNomePropriedade());
         mcnNIRF.setValor(propriedade.getNirfPropriedade());
         mcnArea.setValor(propriedade.getAreaTotalPropriedade());
-        mccbSituacao.setValor(propriedade.getStatusPropriedade());
+       // mccbSituacao.setValor(propriedade.getStatusPropriedade() );
+        if(propriedade.getStatusPropriedade() == "Em análise"){
+            mccbSituacao.setValor(1);
+        } else if (propriedade.getStatusPropriedade() == "Liberado") {
+            mccbSituacao.setValor(2);
+        } else if (propriedade.getStatusPropriedade() == "Protocolado"){
+            mccbSituacao.setValor(3);
+        } else if (propriedade.getStatusPropriedade() == "Vencido"){
+            mccbSituacao.setValor(4);
+        } else if (propriedade.getStatusPropriedade() == "Levar RFB"){
+            mccbSituacao.setValor(5);
+        } 
         mcsnAtivo.setValor(propriedade.getAtivoPropriedade() == 'S' ? 1 : 2);
         super.preencherDados(id);
     }
