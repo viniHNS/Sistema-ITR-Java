@@ -1,17 +1,29 @@
 package telas;
 
 import componentes.MeuCampoComboBox;
+import componentes.MeuCampoDBComboBox;
 import componentes.MeuCampoNumero;
 import componentes.MeuCampoTexto;
+import dao.ContribuinteDao;
+import dao.PropriedadeDao;
+import pojo.Contribuinte;
+import pojo.Propriedade;
 
 public class TelaCadastroPropriedade extends TelaCadastro{
 
-    private MeuCampoTexto mctCodigo = new MeuCampoTexto(5, "Código", false);
+    private Propriedade propriedade = new Propriedade();
+    private PropriedadeDao propriedadeDao = new PropriedadeDao();
+
+    private MeuCampoTexto mctCodigo = new MeuCampoTexto(5, "Código", false){
+        public void setEnabled(boolean status){
+            super.setEnabled(false);
+        }
+    };
     private MeuCampoTexto mctNome = new MeuCampoTexto(20, "Nome", true);
     private MeuCampoComboBox mcsnAtivo = new MeuCampoComboBox("Ativo", new Object[][] {{1, "Sim"}, {2, "Não"}}, true);
     private MeuCampoNumero mcnNIRF = new MeuCampoNumero(5, "NIRF", true);
     private MeuCampoNumero mcnArea = new MeuCampoNumero(5, "Area Total", true);
-    private MeuCampoComboBox mccbContribuinte = new MeuCampoComboBox("Contribuinte", new Object[][] {{1, "Nome Contribuinte1"}, {2, "Nome Contribuinte2"}}, true);
+    private MeuCampoDBComboBox mccbContribuinte = new MeuCampoDBComboBox(true, PropriedadeDao.SQL_COMBOBOX, "Propriedade");
     private MeuCampoComboBox mccbSituacao = new MeuCampoComboBox("Situação", new Object[][] {{1, "Em análise"},{2, "Liberado"}, {3, "Protocolado"}, {4, "Vencido"}, {5, "Levar RFB"}}, true);
 
     public TelaCadastroPropriedade() {
@@ -31,28 +43,54 @@ public class TelaCadastroPropriedade extends TelaCadastro{
 
     }
 
+    public void setaPojoPropriedade(){
+        propriedade.setIdPropriedade(Integer.parseInt("0" + mctCodigo.getValor()));
+        propriedade.setNomePropriedade(mctNome.getValor());
+        propriedade.setNirfPropriedade(mcnNIRF.getValor());
+        propriedade.setAreaTotalPropriedade(mcnArea.getValor());
+        propriedade.getStatusPropriedade(mccbContribuinte.getValor());
+        propriedade.setIdContribuinte(Integer.parseInt(mccbContribuinte.getValor()));
+    }
+
     @Override
     public boolean incluir() {
-        // TODO Auto-generated method stub
-        return false;
+        setaPojoPropriedade();
+        boolean resultado = propriedadeDao.incluir(propriedade);
+        if(resultado == true){
+            mctCodigo.setText("" + propriedade.getIdContribuinte());
+        }
+        return resultado;
     }
 
     @Override
     public boolean alterar() {
-        // TODO Auto-generated method stub
-        return false;
+        setaPojoPropriedade();
+        return propriedadeDao.alterar(propriedade);
     }
 
     @Override
     public boolean excluir() {
-        // TODO Auto-generated method stub
-        return false;
+        setaPojoPropriedade();
+        return propriedadeDao.excluir(propriedade);
     }
 
     @Override
     public boolean consultar() {
-        // TODO Auto-generated method stub
+        new TelaConsulta(this, "Consulta de Propriedade", new String[]{"Código", "Nome", "Área", "NIRF", "Status", "Ativo"}, ContribuinteDao.SQL_COMBOBOX);
         return false;
+    }
+
+    @Override
+    public void preencherDados(int id){
+        propriedade.setIdPropriedade(id);
+        propriedadeDao.consultar(propriedade);
+        mctCodigo.setValor("" + propriedade.getIdContribuinte());
+        mctNome.setValor(propriedade.getNomePropriedade());
+        mcnNIRF.setValor(propriedade.getNirfPropriedade());
+        mcnArea.setValor(propriedade.getAreaTotalPropriedade());
+        mccbSituacao.setValor(propriedade.getStatusPropriedade());
+        mcsnAtivo.setValor(propriedade.getAtivoPropriedade() == 'S' ? 1 : 2);
+        super.preencherDados(id);
     }
     
 }

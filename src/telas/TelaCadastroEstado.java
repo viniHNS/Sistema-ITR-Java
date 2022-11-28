@@ -42,6 +42,7 @@ public class TelaCadastroEstado extends TelaCadastro{
         estado.setNomeEstado(mctNome.getValor());
         estado.setUfEstado(mctNomeUf.getValor());
         estado.setAtivoEstado(mcsnAtivo.getValor().charAt(0));
+        estado.setIdPais(Integer.parseInt(mccbPais.getValor()));
     }
 
     @Override

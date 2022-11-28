@@ -13,21 +13,23 @@ public class ContribuinteDao {
     public final String SQL_EXCLUIR = "DELETE FROM CONTRIBUINTE WHERE idContribuinte = ?";
     public final String SQL_CONSULTAR = "SELECT * FROM CONTRIBUINTE WHERE idContribuinte = ?";
     public final static String SQL_PESQUISAR = "SELECT * FROM Contribuinte";
+    public final static String SQL_COMBOBOX = "SELECT idContribuinte, nomeContribuinte, cpfCnpjContribuinte, nomeCidade, logradouroContribuinte, numeroContribuinte, bairroContribuinte, ativoContribuinte FROM Contribuinte JOIN Cidade ON Contribuinte.IdCidade = Cidade.IdCidade ORDER BY nomeContribuinte";
+
 
     public boolean incluir(Contribuinte contribuinte){
         try {
             contribuinte.setIdContribuinte(Conexao.getGenerator("G_CONTRIBUINTE"));
             PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_INCLUIR);
-            ps.setString(1, contribuinte.getNomeContribuinte());
-            ps.setInt(10, contribuinte.getIdContribuinte());
-            ps.setString(8, "" + contribuinte.getAtivoContribuinte());
-            ps.setString(2, contribuinte.getTelefoneContribuinte());
-            ps.setString(3, contribuinte.getCpfCnpjContribuinte());
-            ps.setString(4, contribuinte.getLogradouroContribuinte());
-            ps.setString(5, contribuinte.getNumeroContribuinte());
-            ps.setString(6, contribuinte.getBairroContribuinte());
-            ps.setString(7, contribuinte.getComplementoContribuinte());
-            ps.setInt(9, contribuinte.getIdCidade());
+            ps.setString(2, contribuinte.getNomeContribuinte());
+            ps.setInt(1, contribuinte.getIdContribuinte());
+            ps.setString(9, "" + contribuinte.getAtivoContribuinte());
+            ps.setString(3, contribuinte.getTelefoneContribuinte());
+            ps.setString(4, contribuinte.getCpfCnpjContribuinte());
+            ps.setString(5, contribuinte.getLogradouroContribuinte());
+            ps.setString(6, contribuinte.getNumeroContribuinte());
+            ps.setString(7, contribuinte.getBairroContribuinte());
+            ps.setString(8, contribuinte.getComplementoContribuinte());
+            ps.setInt(10, contribuinte.getIdCidade());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
