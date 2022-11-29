@@ -16,7 +16,6 @@ public class MeuCampoNumero extends JTextField implements MeuComponente{
         super(tamanho);
         this.nome = nome;
         this.obrigatorio = obrigatorio;
-        adicionaFocusListener();
     }
 
     public String getNome(){
@@ -34,26 +33,6 @@ public class MeuCampoNumero extends JTextField implements MeuComponente{
     @Override
     public boolean isVazio(){
         return getValor().isEmpty();
-    }
-    
-    public void adicionaFocusListener() {
-        Border bordaPadrao = getBorder();
-        Color corPadrao = getBackground();
-        
-        addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent fe) {
-               setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
-               setBackground(new Color(200, 250, 255));
-            }
-
-            @Override
-            public void focusLost(FocusEvent fe) {
-                setBorder(bordaPadrao);
-                setBackground(corPadrao);
-                
-            }
-        });
     }
 
     @Override

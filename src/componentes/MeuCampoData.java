@@ -19,7 +19,6 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente{
         try {
             this.nome = nome;
             this.obrigatorio = obrigatorio;
-            adicionaFocusListener();
             MaskFormatter mf = new MaskFormatter("##/##/####");
             mf.setPlaceholderCharacter('_');
             mf.install(this);
@@ -27,26 +26,6 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente{
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void adicionaFocusListener() {
-        Border bordaPadrao = getBorder();
-        Color corPadrao = getBackground();
-        
-        addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent fe) {
-               setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
-               setBackground(new Color(200, 250, 255));
-            }
-
-            @Override
-            public void focusLost(FocusEvent fe) {
-                setBorder(bordaPadrao);
-                setBackground(corPadrao);
-                
-            }
-        });
     }
 
     @Override
