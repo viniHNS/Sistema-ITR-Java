@@ -12,6 +12,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 public class TelaSistema extends JFrame implements ActionListener {
 
     public static JDesktopPane jdp = new JDesktopPane();
@@ -39,6 +41,13 @@ public class TelaSistema extends JFrame implements ActionListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        FlatLightLaf.setup(); //setting the look and feel
+        setDefaultLookAndFeelDecorated(true);
+        getRootPane().putClientProperty("JRootPane.titleBarBackground", new Color(23,180,252));
+        getRootPane().putClientProperty("JRootPane.titleBarForeground", Color.blue);
+
+        
         setTitle(titulo);
         setSize(600, 600);
         setJMenuBar(jmb);

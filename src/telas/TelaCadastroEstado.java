@@ -69,7 +69,7 @@ public class TelaCadastroEstado extends TelaCadastro{
 
     @Override
     public boolean consultar() {
-        new TelaConsulta(this, "Consulta de Estado", new String []{"Código", "Nome", "UF", "Ativo"}, EstadoDao.SQL_PESQUISAR);
+        new TelaConsulta(this, "Consulta de Estado", new String []{"Código", "Nome", "UF", "Ativo"}, new int[]{100}, EstadoDao.SQL_PESQUISAR);
         return false;
     }
 

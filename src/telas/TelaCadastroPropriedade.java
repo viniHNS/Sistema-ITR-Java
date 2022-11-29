@@ -77,7 +77,7 @@ public class TelaCadastroPropriedade extends TelaCadastro{
 
     @Override
     public boolean consultar() {
-        new TelaConsulta(this, "Consulta de Propriedade", new String[]{"Código", "Nome", "Área", "NIRF", "Status", "Ativo"}, PropriedadeDao.SQL_COMBOBOX);
+        new TelaConsulta(this, "Consulta de Propriedade", new String[]{"Código", "Nome", "Área", "NIRF", "Status", "Ativo"}, new int[]{50}, PropriedadeDao.SQL_COMBOBOX);
         return false;
     }
 

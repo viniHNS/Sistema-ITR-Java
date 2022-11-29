@@ -86,7 +86,7 @@ public class TelaCadastroContribuinte extends TelaCadastro{
 
     @Override
     public boolean consultar() {
-        new TelaConsulta(this, "Consulta de Contribuinte", new String[]{"Código", "Nome", "CPF","Cidade", "Logradouro", "Numero", "Bairro", "Ativo"}, ContribuinteDao.SQL_COMBOBOX);
+        new TelaConsulta(this, "Consulta de Contribuinte", new String[]{"Código", "Nome", "CPF","Cidade", "Logradouro", "Numero", "Bairro", "Ativo"}, new int[]{100}, ContribuinteDao.SQL_COMBOBOX);
         return false;
     }
 

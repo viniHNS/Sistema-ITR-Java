@@ -5,11 +5,16 @@ import java.lang.Integer;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 public class TelaConsulta extends JInternalFrame implements MouseListener{
 
@@ -23,7 +28,7 @@ public class TelaConsulta extends JInternalFrame implements MouseListener{
     };
     private JScrollPane jsp = new JScrollPane(tabela);
 
-    public TelaConsulta(TelaCadastro telaChamadora, String titulo, String[] colunas, String sql){
+    public TelaConsulta(TelaCadastro telaChamadora, String titulo, String[] colunas, int[] larguras, String sql){
         super(titulo);
         this.telaChamadora = telaChamadora;
         tabela.getTableHeader().setReorderingAllowed(false);
@@ -34,12 +39,22 @@ public class TelaConsulta extends JInternalFrame implements MouseListener{
             return;
         }
         getContentPane().add(jsp);
-        pack();
+
+        TableColumnModel columnModel = tabela.getColumnModel();
+        for(int i = 0; i < larguras.length; i++) {
+            columnModel.getColumn(i).setPreferredWidth(larguras[i]);
+        }
+        setSize(800, 400);
+        setClosable(true);
+        setDesktopIcon(desktopIcon);
         setVisible(true);
+
+        ImageIcon icon = new ImageIcon("res/lupa.png");
+        setFrameIcon(icon);
+
         TelaSistema.jdp.add(this);
         TelaSistema.jdp.moveToFront(this);
         tabela.addMouseListener(this);
-
     }
 
     public void insereColunas(String[] colunas){
