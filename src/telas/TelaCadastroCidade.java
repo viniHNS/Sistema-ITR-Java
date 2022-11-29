@@ -43,8 +43,8 @@ public class TelaCadastroCidade extends TelaCadastro{
         cidade.setNomeCidade(mctNome.getValor());
         cidade.setIdEstado(Integer.parseInt(mcsnUF.getValor()));
         cidade.setAtivoCidade(mcsnAtivo.getValor().charAt(0));
+        cidade.setCepCidade(mcCEP.getValor());
     }
-
 
     @Override
     public boolean incluir() {
@@ -56,20 +56,17 @@ public class TelaCadastroCidade extends TelaCadastro{
         return resultado;
     }
 
-
     @Override
     public boolean alterar() {
         setaPojoCidade();
         return cidadeDao.alterar(cidade);
     }
 
-
     @Override
     public boolean excluir() {
         setaPojoCidade();
         return cidadeDao.excluir(cidade);
     }
-
 
     @Override
     public boolean consultar() {

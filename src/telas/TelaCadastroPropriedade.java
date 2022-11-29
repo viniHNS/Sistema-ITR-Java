@@ -4,9 +4,7 @@ import componentes.MeuCampoComboBox;
 import componentes.MeuCampoDBComboBox;
 import componentes.MeuCampoNumero;
 import componentes.MeuCampoTexto;
-import dao.ContribuinteDao;
 import dao.PropriedadeDao;
-import pojo.Contribuinte;
 import pojo.Propriedade;
 
 public class TelaCadastroPropriedade extends TelaCadastro{
@@ -49,7 +47,10 @@ public class TelaCadastroPropriedade extends TelaCadastro{
         propriedade.setNirfPropriedade(mcnNIRF.getValor());
         propriedade.setAreaTotalPropriedade(mcnArea.getValor());
         propriedade.setStatusPropriedade(mccbSituacao.getValor());
+        propriedade.setParametroSelecaoPropriedade(mccbSituacao.getValor());
+        propriedade.setAtivoPropriedade(mcsnAtivo.getValor().charAt(0));
         propriedade.setIdContribuinte(Integer.parseInt(mccbContribuinte.getValor()));
+
     }
 
     @Override
@@ -88,7 +89,6 @@ public class TelaCadastroPropriedade extends TelaCadastro{
         mctNome.setValor(propriedade.getNomePropriedade());
         mcnNIRF.setValor(propriedade.getNirfPropriedade());
         mcnArea.setValor(propriedade.getAreaTotalPropriedade());
-       // mccbSituacao.setValor(propriedade.getStatusPropriedade() );
         if(propriedade.getStatusPropriedade() == "Em análise"){
             mccbSituacao.setValor(1);
         } else if (propriedade.getStatusPropriedade() == "Liberado") {

@@ -1,11 +1,14 @@
 package telas;
 
 import componentes.MeuCampoComboBox;
+import componentes.MeuCampoDBComboBox;
 import componentes.MeuCampoData;
 import componentes.MeuCampoNumIntimacao;
 import componentes.MeuCampoTexto;
 import dao.IntimacaoDao;
+import dao.PropriedadeDao;
 import pojo.Intimacao;
+import pojo.Propriedade;
 
 public class TelaCadastroIntimacao extends TelaCadastro{
 
@@ -17,55 +20,87 @@ public class TelaCadastroIntimacao extends TelaCadastro{
             super.setEnabled(false);
         }
     };
-    private MeuCampoTexto mctNome = new MeuCampoTexto(20, "Nome", true);
     private MeuCampoComboBox mcsnAtivo = new MeuCampoComboBox("Ativo", new Object[][] {{1, "Sim"}, {2, "Não"}}, true);
     private MeuCampoData mcdDataEntrega = new MeuCampoData("Data Entrega", false);
     private MeuCampoData mcdDataPostagem = new MeuCampoData("Data Postagem", false);
     private MeuCampoNumIntimacao mcniNumInt = new MeuCampoNumIntimacao("Numero Intimação", true);
+    private MeuCampoNumIntimacao mcniNumConst = new MeuCampoNumIntimacao("Numero Constatação", true);
     private MeuCampoNumIntimacao mcniNumIntConst = new MeuCampoNumIntimacao("Numero Intimação/Const", true);
     private MeuCampoTexto mctRastreio = new MeuCampoTexto(10, "Cód. Rastreio", false);
-    private MeuCampoComboBox mccbContribuinte = new MeuCampoComboBox("Contribuinte", new Object[][] {{1, "Nome Contribuinte1"}, {2, "Nome Contribuinte2"}}, true);
+    private MeuCampoDBComboBox mccbContribuinte = new MeuCampoDBComboBox(true, IntimacaoDao.SQL_COMBOBOX, "Contribuinte");
 
     public TelaCadastroIntimacao() {
         super("Cadastro da Intimação");
 
         adicionaComponente(mctCodigo, 1, 1, 1, 1);
-        adicionaComponente(mctNome, 2, 1, 1, 1);
-        adicionaComponente(mctRastreio, 4,1,1,1);
-        adicionaComponente(mcdDataEntrega, 5, 1, 1, 1);
-        adicionaComponente(mcdDataPostagem, 6, 1, 1, 1);
-        adicionaComponente(mcniNumInt, 7,1,1,1);
+        adicionaComponente(mccbContribuinte, 2, 1, 1, 1);
+        adicionaComponente(mctRastreio, 3,1,1,1);
+        adicionaComponente(mcdDataEntrega, 4, 1, 1, 1);
+        adicionaComponente(mcdDataPostagem, 5, 1, 1, 1);
+        adicionaComponente(mcniNumInt, 6,1,1,1);
+        adicionaComponente(mcniNumConst, 7,1,1,1);
         adicionaComponente(mcniNumIntConst, 8,1,1,1);
-        adicionaComponente(mccbContribuinte, 9,1,1,1);
-        adicionaComponente(mcsnAtivo, 10, 1, 1, 1);
+        adicionaComponente(mcsnAtivo, 9, 1, 1, 1);
         habilitaCampos(false);
         pack();        
         setVisible(true);
 
     }
 
+    public void setaPojoIntimacao(){
+        intimacao.setIdIntimacao(Integer.parseInt("0" + mctCodigo.getValor()));
+        intimacao.setCodRastreioIntimacao(mctRastreio.getValor());
+        intimacao.setDataPostagemIntimacao(mcdDataPostagem.getValor());
+        intimacao.setDataEntregaIntimacao(mcdDataEntrega.getValor());
+        intimacao.setNumIntimacao(mcniNumInt.getValor());
+        intimacao.setNumIntimacaoConstatacao(mcniNumIntConst.getValor());
+        intimacao.setAtivoIntimacao(mcsnAtivo.getValor().charAt(0));
+        intimacao.setIdPropriedade(Integer.parseInt(mccbContribuinte.getValor()));
+        intimacao.setNumConstatacao(mcniNumConst.getValor());
+    
+    }
+
     @Override
     public boolean incluir() {
-        // TODO Auto-generated method stub
-        return false;
+        setaPojoIntimacao();
+        boolean resultado = intimacaoDao.incluir(intimacao);
+        if(resultado == true){
+            mctCodigo.setText("" + intimacao.getIdIntimacao());
+        }
+        return resultado;
     }
 
     @Override
     public boolean alterar() {
-        // TODO Auto-generated method stub
-        return false;
+        setaPojoIntimacao();
+        return intimacaoDao.alterar(intimacao);
     }
 
     @Override
     public boolean excluir() {
-        // TODO Auto-generated method stub
-        return false;
+        setaPojoIntimacao();
+        return intimacaoDao.excluir(intimacao);
     }
 
     @Override
     public boolean consultar() {
-        // TODO Auto-generated method stub
+        new TelaConsulta(this, "Consulta de Intimacao", new String[]{"Código", "Propriedade", "Num. Intimacao", "Num. Constatacao", "Num. Intimacao e Constatacao", "Cod. Rastreio"}, IntimacaoDao.SQL_COMBOBOX);
         return false;
+    }
+
+    @Override
+    public void preencherDados(int id){
+        intimacao.setIdIntimacao(id);
+        intimacaoDao.consultar(intimacao);
+        mctCodigo.setValor("" + intimacao.getIdIntimacao());
+        mctRastreio.setValor(intimacao.getCodRastreioIntimacao());
+        mcdDataEntrega.setValor(intimacao.getDataEntregaIntimacao());
+        mcdDataPostagem.setValor(intimacao.getDataPostagemIntimacao());
+        mcniNumInt.setValor(intimacao.getNumIntimacao());
+        mcniNumIntConst.setValor(intimacao.getNumIntimacaoConstatacao());
+        mcniNumConst.setValor(intimacao.getNumConstatacao());
+        mcsnAtivo.setValor(intimacao.getAtivoIntimacao() == 'S' ? 1 : 2);
+        super.preencherDados(id);
     }
     
 }
