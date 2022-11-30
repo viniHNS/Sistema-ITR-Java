@@ -46,7 +46,7 @@ public class MeuCampoNumIntimacao extends JFormattedTextField implements MeuComp
     @Override
     public boolean isValido() {
 
-        return getValor().replace("/", "").replace("_", "").length() == 8;
+        return getValor().replace("/", "").replace("_", "").length() == 16;
     }
 
     @Override

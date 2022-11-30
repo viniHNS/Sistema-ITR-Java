@@ -6,6 +6,7 @@ import componentes.MeuCampoData;
 import componentes.MeuCampoNumIntimacao;
 import componentes.MeuCampoTexto;
 import dao.IntimacaoDao;
+import dao.PropriedadeDao;
 import pojo.Intimacao;
 
 public class TelaCadastroIntimacao extends TelaCadastro{
@@ -25,7 +26,7 @@ public class TelaCadastroIntimacao extends TelaCadastro{
     private MeuCampoNumIntimacao mcniNumConst = new MeuCampoNumIntimacao("Numero Constatação", true);
     private MeuCampoNumIntimacao mcniNumIntConst = new MeuCampoNumIntimacao("Numero Intimação/Const", true);
     private MeuCampoTexto mctRastreio = new MeuCampoTexto(10, "Cód. Rastreio", false);
-    private MeuCampoDBComboBox mccbPropriedade = new MeuCampoDBComboBox(true, IntimacaoDao.SQL_COMBOBOX, "Propriedade");
+    private MeuCampoDBComboBox mccbPropriedade = new MeuCampoDBComboBox(true, PropriedadeDao.SQL_COMBOBOX, "Propriedade");
 
     public TelaCadastroIntimacao() {
         super("Cadastro da Intimação");

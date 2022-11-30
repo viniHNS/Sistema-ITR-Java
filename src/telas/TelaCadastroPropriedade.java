@@ -86,7 +86,8 @@ public class TelaCadastroPropriedade extends TelaCadastro{
     public void preencherDados(int id){
         propriedade.setIdPropriedade(id);
         propriedadeDao.consultar(propriedade);
-        mctCodigo.setValor("" + propriedade.getIdContribuinte());
+        mctCodigo.setValor("" + propriedade.getIdPropriedade());
+        mccbContribuinte.setValor(propriedade.getIdContribuinte());
         mctNome.setValor(propriedade.getNomePropriedade());
         mcnNIRF.setValor(propriedade.getNirfPropriedade());
         mcnArea.setValor(propriedade.getAreaTotalPropriedade());

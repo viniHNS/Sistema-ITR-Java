@@ -12,7 +12,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.FlatIntelliJLaf;
 
 public class TelaSistema extends JFrame implements ActionListener {
 
@@ -42,12 +42,9 @@ public class TelaSistema extends JFrame implements ActionListener {
             e.printStackTrace();
         }
 
-        FlatLightLaf.setup(); //setting the look and feel
+        FlatIntelliJLaf.setup(); //setting the look and feel
         setDefaultLookAndFeelDecorated(true);
-        getRootPane().putClientProperty("JRootPane.titleBarBackground", new Color(23,180,252));
-        getRootPane().putClientProperty("JRootPane.titleBarForeground", Color.blue);
-
-        
+     
         setTitle(titulo);
         setSize(600, 600);
         setJMenuBar(jmb);
