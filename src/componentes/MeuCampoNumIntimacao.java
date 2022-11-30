@@ -1,12 +1,6 @@
 package componentes;
 
-import java.awt.Color;
-import java.awt.event.FocusListener;
-import java.awt.event.FocusEvent;
-
-import javax.swing.BorderFactory;
 import javax.swing.JFormattedTextField;
-import javax.swing.border.Border;
 import javax.swing.text.MaskFormatter;
 
 public class MeuCampoNumIntimacao extends JFormattedTextField implements MeuComponente{

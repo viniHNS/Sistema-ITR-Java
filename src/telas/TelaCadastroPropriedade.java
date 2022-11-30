@@ -4,6 +4,7 @@ import componentes.MeuCampoComboBox;
 import componentes.MeuCampoDBComboBox;
 import componentes.MeuCampoNumero;
 import componentes.MeuCampoTexto;
+import dao.ContribuinteDao;
 import dao.PropriedadeDao;
 import pojo.Propriedade;
 
@@ -21,7 +22,7 @@ public class TelaCadastroPropriedade extends TelaCadastro{
     private MeuCampoComboBox mcsnAtivo = new MeuCampoComboBox("Ativo", new Object[][] {{1, "Sim"}, {2, "Não"}}, true);
     private MeuCampoNumero mcnNIRF = new MeuCampoNumero(5, "NIRF", true);
     private MeuCampoNumero mcnArea = new MeuCampoNumero(5, "Area Total", true);
-    private MeuCampoDBComboBox mccbContribuinte = new MeuCampoDBComboBox(true, PropriedadeDao.SQL_COMBOBOX, "Contribuinte");
+    private MeuCampoDBComboBox mccbContribuinte = new MeuCampoDBComboBox(true, ContribuinteDao.SQL_COMBOBOX, "Contribuinte");
     private MeuCampoComboBox mccbSituacao = new MeuCampoComboBox("Situação", new Object[][] {{1, "Em análise"},{2, "Liberado"}, {3, "Protocolado"}, {4, "Vencido"}, {5, "Levar RFB"}}, true);
 
     public TelaCadastroPropriedade() {
@@ -89,6 +90,7 @@ public class TelaCadastroPropriedade extends TelaCadastro{
         mctNome.setValor(propriedade.getNomePropriedade());
         mcnNIRF.setValor(propriedade.getNirfPropriedade());
         mcnArea.setValor(propriedade.getAreaTotalPropriedade());
+
         if(propriedade.getStatusPropriedade() == "Em análise"){
             mccbSituacao.setValor(1);
         } else if (propriedade.getStatusPropriedade() == "Liberado") {

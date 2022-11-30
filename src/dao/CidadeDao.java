@@ -36,7 +36,11 @@ public class CidadeDao {
     public boolean alterar(Cidade cidade){
         try {
             PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_ALTERAR);
-            ps.setInt(1, cidade.getIdCidade());
+            ps.setInt(4, cidade.getIdCidade());
+            ps.setString(2, cidade.getNomeCidade());
+            ps.setString(1, cidade.getCepCidade());
+            ps.setString(3, "" + cidade.getAtivoCidade());
+
             ps.executeUpdate();
             return true;
         } catch (Exception e) {

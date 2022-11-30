@@ -11,8 +11,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -46,7 +44,6 @@ public class TelaConsulta extends JInternalFrame implements MouseListener{
         }
         setSize(800, 400);
         setClosable(true);
-        setDesktopIcon(desktopIcon);
         setVisible(true);
 
         ImageIcon icon = new ImageIcon("res/lupa.png");

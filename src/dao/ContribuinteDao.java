@@ -9,7 +9,7 @@ import pojo.Contribuinte;
 
 public class ContribuinteDao {
     public final String SQL_INCLUIR = "INSERT INTO CONTRIBUINTE VALUES (?,?,?,?,?,?,?,?,?,?)";
-    public final String SQL_ALTERAR = "UPDATE CONTRIBUINTE SET nomeContribuinte = ?, telefoneContribuinte = ?, cpfCnpjContribuinte = ?, logradouroContribuinte = ?, numeroContribuinte = ?, bairroContribuinte = ?, complementoContribuinte = ?, ativoContribuinte = ?, idCidade = ? WHERE idContribuinte = ?";
+    public final String SQL_ALTERAR = "UPDATE CONTRIBUINTE SET nomeContribuinte = ?, telefoneContribuinte = ?, cpfCnpjContribuinte = ?, logradouroContribuinte = ?, numeroContribuinte = ?, bairroContribuinte = ?, complementoContribuinte = ?, ativoContribuinte = ? WHERE idContribuinte = ?";
     public final String SQL_EXCLUIR = "DELETE FROM CONTRIBUINTE WHERE idContribuinte = ?";
     public final String SQL_CONSULTAR = "SELECT * FROM CONTRIBUINTE WHERE idContribuinte = ?";
     public final static String SQL_PESQUISAR = "SELECT * FROM Contribuinte";
@@ -43,7 +43,7 @@ public class ContribuinteDao {
         try {
             PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_ALTERAR);
             ps.setString(1, contribuinte.getNomeContribuinte());
-            ps.setInt(10, contribuinte.getIdContribuinte());
+            ps.setInt(9, contribuinte.getIdContribuinte());
             ps.setString(8, "" + contribuinte.getAtivoContribuinte());
             ps.setString(2, contribuinte.getTelefoneContribuinte());
             ps.setString(3, contribuinte.getCpfCnpjContribuinte());
@@ -51,7 +51,6 @@ public class ContribuinteDao {
             ps.setString(5, contribuinte.getNumeroContribuinte());
             ps.setString(6, contribuinte.getBairroContribuinte());
             ps.setString(7, contribuinte.getComplementoContribuinte());
-            ps.setInt(9, contribuinte.getIdCidade());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {

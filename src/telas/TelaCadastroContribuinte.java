@@ -1,6 +1,5 @@
 package telas;
 
-import componentes.MeuCampoCEP;
 import componentes.MeuCampoComboBox;
 import componentes.MeuCampoDBComboBox;
 import componentes.MeuCampoNumero;
@@ -94,7 +93,7 @@ public class TelaCadastroContribuinte extends TelaCadastro{
     public void preencherDados(int id){
         contribuinte.setIdContribuinte(id);
         contribuinteDao.consultar(contribuinte);
-        mctCodigo.setValor("" + contribuinte.getIdCidade());
+        mctCodigo.setValor("" + contribuinte.getIdContribuinte());
         mctNome.setValor(contribuinte.getNomeContribuinte());
         mcnCPF.setValor(contribuinte.getCpfCnpjContribuinte());
         mcnTelefone.setValor(contribuinte.getTelefoneContribuinte());
@@ -102,6 +101,7 @@ public class TelaCadastroContribuinte extends TelaCadastro{
         mccbCidade.setValor(contribuinte.getIdCidade());
         mctNumero.setValor(contribuinte.getNumeroContribuinte());
         mctComplemento.setValor(contribuinte.getComplementoContribuinte());
+        mctBairro.setValor(contribuinte.getBairroContribuinte());
         mcsnAtivo.setValor(contribuinte.getAtivoContribuinte() == 'S' ? 1 : 2);
         super.preencherDados(id);
 

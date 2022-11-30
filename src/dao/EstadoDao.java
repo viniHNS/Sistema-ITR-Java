@@ -12,7 +12,7 @@ public class EstadoDao {
     public final String SQL_ALTERAR = "UPDATE ESTADO SET nomeEstado = ?, ufEstado = ?, ativoEstado = ? WHERE idEstado = ?";
     public final String SQL_EXCLUIR = "DELETE FROM ESTADO WHERE idEstado = ?";
     public final String SQL_CONSULTAR = "SELECT * FROM ESTADO WHERE idEstado = ?";
-    public final static String SQL_PESQUISAR = "SELECT * FROM Estado";
+    public final static String SQL_PESQUISAR = "SELECT IDESTADO, NOMEESTADO, UFESTADO, NOMEPAIS, ATIVOPAIS FROM Estado JOIN PAIS ON ESTADO.IDPAIS = PAIS.IDPAIS ORDER BY NOMEPAIS";
     public final static String SQL_COMBOBOX = "SELECT idEstado, nomeEstado || ' - ' || ufEstado FROM Estado ORDER BY nomeEstado";
     
     
@@ -86,53 +86,4 @@ public class EstadoDao {
     }
 }
 
-    class TesteEstadoDao {
-
-        public static void main(String args[]) {
-            Estado estado = new Estado();
-            EstadoDao EstadoDao = new EstadoDao();
-            String id = JOptionPane.showInputDialog(null, "Informe o Id");
-            String idEstado = JOptionPane.showInputDialog(null, "Informe o ID do estado para ser vinculado");
-            String nome = JOptionPane.showInputDialog(null, "Informe o Nome do estado");
-            String uf = JOptionPane.showInputDialog(null, "Informe a sigla UF");
-            String ativo = JOptionPane.showInputDialog(null, "Informe se está ativo", "S");
-    
-            estado.setIdEstado(Integer.parseInt(id));
-            estado.setIdEstado(Integer.parseInt("0" + idEstado));
-            estado.setNomeEstado(nome);
-            estado.setUfEstado(uf);
-            estado.setAtivoEstado(ativo.charAt(0));
-    
-            String operacao = JOptionPane.showInputDialog(null, "Você quer (I)ncluir, (A)lterar, (E)xcluir ou (C)onsultar?", "C");
-    
-            boolean resultado;
-            switch (operacao.toUpperCase().charAt(0)) {
-                case 'I':
-                    resultado = EstadoDao.incluir(estado);
-                    break;
-                case 'A':
-                    resultado = EstadoDao.alterar(estado);
-                    break;
-                case 'E':
-                    resultado = EstadoDao.excluir(estado);
-                    break;
-                case 'C':
-                    resultado = EstadoDao.consultar(estado);
-                    break;
-                default:
-                    System.out.println("Operação inválida");
-                    return;
-            }
-            if (resultado == true) {
-                System.out.println("OPERAÇÃO " + operacao.toUpperCase() + " efetuada com sucesso!!!");
-                System.out.println("ID: " + estado.getIdEstado());
-                System.out.println("NOME: " + estado.getNomeEstado());
-                System.out.println("UF: " + estado.getUfEstado());
-                System.out.println("ID ESTADO: " + estado.getIdEstado());
-                System.out.println("ATIVO: " + estado.getAtivoEstado());
-            } else {
-                System.out.println("Erro ao tentar executar a operação no banco de dados");
-            }
-        }
-    }
 

@@ -6,9 +6,7 @@ import componentes.MeuCampoData;
 import componentes.MeuCampoNumIntimacao;
 import componentes.MeuCampoTexto;
 import dao.IntimacaoDao;
-import dao.PropriedadeDao;
 import pojo.Intimacao;
-import pojo.Propriedade;
 
 public class TelaCadastroIntimacao extends TelaCadastro{
 
@@ -27,13 +25,13 @@ public class TelaCadastroIntimacao extends TelaCadastro{
     private MeuCampoNumIntimacao mcniNumConst = new MeuCampoNumIntimacao("Numero Constatação", true);
     private MeuCampoNumIntimacao mcniNumIntConst = new MeuCampoNumIntimacao("Numero Intimação/Const", true);
     private MeuCampoTexto mctRastreio = new MeuCampoTexto(10, "Cód. Rastreio", false);
-    private MeuCampoDBComboBox mccbContribuinte = new MeuCampoDBComboBox(true, IntimacaoDao.SQL_COMBOBOX, "Contribuinte");
+    private MeuCampoDBComboBox mccbPropriedade = new MeuCampoDBComboBox(true, IntimacaoDao.SQL_COMBOBOX, "Propriedade");
 
     public TelaCadastroIntimacao() {
         super("Cadastro da Intimação");
 
         adicionaComponente(mctCodigo, 1, 1, 1, 1);
-        adicionaComponente(mccbContribuinte, 2, 1, 1, 1);
+        adicionaComponente(mccbPropriedade, 2, 1, 1, 1);
         adicionaComponente(mctRastreio, 3,1,1,1);
         adicionaComponente(mcdDataEntrega, 4, 1, 1, 1);
         adicionaComponente(mcdDataPostagem, 5, 1, 1, 1);
@@ -55,7 +53,7 @@ public class TelaCadastroIntimacao extends TelaCadastro{
         intimacao.setNumIntimacao(mcniNumInt.getValor());
         intimacao.setNumIntimacaoConstatacao(mcniNumIntConst.getValor());
         intimacao.setAtivoIntimacao(mcsnAtivo.getValor().charAt(0));
-        intimacao.setIdPropriedade(Integer.parseInt(mccbContribuinte.getValor()));
+        intimacao.setIdPropriedade(Integer.parseInt(mccbPropriedade.getValor()));
         intimacao.setNumConstatacao(mcniNumConst.getValor());
     
     }
@@ -92,7 +90,9 @@ public class TelaCadastroIntimacao extends TelaCadastro{
     public void preencherDados(int id){
         intimacao.setIdIntimacao(id);
         intimacaoDao.consultar(intimacao);
+        
         mctCodigo.setValor("" + intimacao.getIdIntimacao());
+        mccbPropriedade.setValor(intimacao.getIdPropriedade());
         mctRastreio.setValor(intimacao.getCodRastreioIntimacao());
         mcdDataEntrega.setValor(intimacao.getDataEntregaIntimacao());
         mcdDataPostagem.setValor(intimacao.getDataPostagemIntimacao());

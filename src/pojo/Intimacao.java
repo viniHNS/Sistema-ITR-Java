@@ -1,7 +1,5 @@
 package pojo;
 
-import java.util.Date;
-
 public class Intimacao {
     private int idIntimacao;
     private String numIntimacao;

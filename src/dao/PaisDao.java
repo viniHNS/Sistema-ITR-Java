@@ -79,49 +79,7 @@ public class PaisDao {
         }
     }
 }
-    class TestePaisDao {
-
-        public static void main(String args[]) {
-            Pais pais = new Pais();
-            PaisDao PaisDao = new PaisDao();
-            String id = JOptionPane.showInputDialog(null, "Informe o Id");
-            String nome = JOptionPane.showInputDialog(null, "Informe o Nome");
-            String ativo = JOptionPane.showInputDialog(null, "Informe se está ativo", "S");
-    
-            pais.setIdPais(Integer.parseInt(id));
-            pais.setNomePais(nome);
-            pais.setAtivoPais(ativo.charAt(0));
-    
-            String operacao = JOptionPane.showInputDialog(null, "Você quer (I)ncluir, (A)lterar, (E)xcluir ou (C)onsultar?", "C");
-    
-            boolean resultado;
-            switch (operacao.toUpperCase().charAt(0)) {
-                case 'I':
-                    resultado = PaisDao.incluir(pais);
-                    break;
-                case 'A':
-                    resultado = PaisDao.alterar(pais);
-                    break;
-                case 'E':
-                    resultado = PaisDao.excluir(pais);
-                    break;
-                case 'C':
-                    resultado = PaisDao.consultar(pais);
-                    break;
-                default:
-                    System.out.println("Operação inválida");
-                    return;
-            }
-            if (resultado == true) {
-                System.out.println("OPERAÇÃO " + operacao.toUpperCase() + " efetuada com sucesso!!!");
-                System.out.println("ID: " + pais.getIdPais());
-                System.out.println("NOME: " + pais.getNomePais());
-                System.out.println("ATIVO: " + pais.getAtivoPais());
-            } else {
-                System.out.println("Erro ao tentar executar a operação no banco de dados");
-            }
-        }
-    }
+   
 
 
 

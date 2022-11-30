@@ -70,7 +70,7 @@ public class TelaCadastroCidade extends TelaCadastro{
 
     @Override
     public boolean consultar() {
-        new TelaConsulta(this, "Consulta de Cidade", new String[]{"Código", "Nome", "Estado", "CEP", "Ativo"}, new int[]{20}, CidadeDao.SQL_PESQUISAR);
+        new TelaConsulta(this, "Consulta de Cidade", new String[]{"Código", "Nome", "Estado", "CEP", "Ativo"}, new int[]{100}, CidadeDao.SQL_PESQUISAR);
         return true;
     }
 

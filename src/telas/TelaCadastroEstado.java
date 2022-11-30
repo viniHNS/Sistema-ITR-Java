@@ -40,9 +40,10 @@ public class TelaCadastroEstado extends TelaCadastro{
     public void setaPojoEstado(){
         estado.setIdEstado(Integer.parseInt("0" + mctCodigo.getValor()));
         estado.setNomeEstado(mctNome.getValor());
+        estado.setIdPais(Integer.parseInt(mccbPais.getValor()));
         estado.setUfEstado(mctNomeUf.getValor());
         estado.setAtivoEstado(mcsnAtivo.getValor().charAt(0));
-        estado.setIdPais(Integer.parseInt(mccbPais.getValor()));
+        
     }
 
     @Override
@@ -69,7 +70,7 @@ public class TelaCadastroEstado extends TelaCadastro{
 
     @Override
     public boolean consultar() {
-        new TelaConsulta(this, "Consulta de Estado", new String []{"Código", "Nome", "UF", "Ativo"}, new int[]{100}, EstadoDao.SQL_PESQUISAR);
+        new TelaConsulta(this, "Consulta de Estado", new String []{"Código", "Nome", "UF", "Pais", "Ativo"}, new int[]{100}, EstadoDao.SQL_PESQUISAR);
         return false;
     }
 

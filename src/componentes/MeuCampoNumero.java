@@ -1,11 +1,6 @@
 package componentes;
 
 import javax.swing.JTextField;
-import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import javax.swing.BorderFactory;
-import javax.swing.border.Border;
 
 public class MeuCampoNumero extends JTextField implements MeuComponente{
 
