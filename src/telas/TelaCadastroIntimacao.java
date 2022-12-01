@@ -83,7 +83,7 @@ public class TelaCadastroIntimacao extends TelaCadastro{
 
     @Override
     public boolean consultar() {
-        new TelaConsulta(this, "Consulta de Intimacao", new String[]{"Código", "Propriedade", "Num. Intimacao", "Num. Constatacao", "Num. Intimacao e Constatacao", "Cod. Rastreio"}, new int[]{100}, IntimacaoDao.SQL_COMBOBOX);
+        new TelaConsulta(this, "Consulta de Intimacao", new String[]{"Código", "Propriedade", "Num. Intimacao", "Num. Constatacao", "Num. Intimacao e Constatacao", "Cod. Rastreio"}, new int[]{100}, IntimacaoDao.SQL_PESQUISAR);
         return false;
     }
 

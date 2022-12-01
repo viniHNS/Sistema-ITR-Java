@@ -70,6 +70,7 @@ public class EstadoDao {
             ps.setInt(1, estado.getIdEstado());
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
+                estado.setIdPais(Integer.parseInt(rs.getString("idPais")));
                 estado.setNomeEstado(rs.getString("nomeEstado"));
                 estado.setUfEstado(rs.getString("ufEstado"));
                 estado.setAtivoEstado(rs.getString("ativoEstado").charAt(0));

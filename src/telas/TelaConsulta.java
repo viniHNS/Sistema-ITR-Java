@@ -42,7 +42,7 @@ public class TelaConsulta extends JInternalFrame implements MouseListener{
         for(int i = 0; i < larguras.length; i++) {
             columnModel.getColumn(i).setPreferredWidth(larguras[i]);
         }
-        setSize(800, 400);
+        setSize(900, 400);
         setClosable(true);
         setVisible(true);
 

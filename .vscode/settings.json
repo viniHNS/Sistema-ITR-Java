@@ -2,15 +2,6 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "d:\\Downloads\\jaybird-4.0.6.java11\\jaybird-full-4.0.6.java11.jar",
-        "d:\\Downloads\\jasperreports-6.20.0.jar",
-        "d:\\Downloads\\jasperreports-castor-6.20.0.jar",
-        "d:\\Downloads\\jasperreports-chart-customizers-6.20.0.jar",
-        "d:\\Downloads\\jasperreports-chart-themes-6.20.0.jar",
-        "d:\\Downloads\\jasperreports-custom-visualization-6.20.0.jar",
-        "d:\\Downloads\\jasperreports-fonts-6.20.0.jar",
-        "d:\\Downloads\\jasperreports-functions-6.20.0.jar",
-        "d:\\Downloads\\jasperreports-javaflow-6.20.0.jar",
-        "d:\\Downloads\\jasperreports-metadata-6.20.0.jar",
         "c:\\Users\\Nishida\\Documents\\projeto\\flatlaf-2.6.jar"
     ]
 }

@@ -78,7 +78,7 @@ public class TelaCadastroPropriedade extends TelaCadastro{
 
     @Override
     public boolean consultar() {
-        new TelaConsulta(this, "Consulta de Propriedade", new String[]{"Código", "Nome", "Área", "NIRF", "Status", "Ativo"}, new int[]{50}, PropriedadeDao.SQL_COMBOBOX);
+        new TelaConsulta(this, "Consulta de Propriedade", new String[]{"Código", "Nome", "Área", "NIRF", "Status", "Ativo"}, new int[]{150}, PropriedadeDao.SQL_PESQUISAR);
         return false;
     }
 
@@ -92,15 +92,17 @@ public class TelaCadastroPropriedade extends TelaCadastro{
         mcnNIRF.setValor(propriedade.getNirfPropriedade());
         mcnArea.setValor(propriedade.getAreaTotalPropriedade());
 
-        if(propriedade.getStatusPropriedade() == "Em análise"){
+        System.out.println(propriedade.getStatusPropriedade());
+
+        if(propriedade.getStatusPropriedade().equalsIgnoreCase("Em analise")){
             mccbSituacao.setValor(1);
-        } else if (propriedade.getStatusPropriedade() == "Liberado") {
+        } if (propriedade.getStatusPropriedade().equalsIgnoreCase("Liberado")) {
             mccbSituacao.setValor(2);
-        } else if (propriedade.getStatusPropriedade() == "Protocolado"){
+        } if (propriedade.getStatusPropriedade().equalsIgnoreCase("Protocolado")){
             mccbSituacao.setValor(3);
-        } else if (propriedade.getStatusPropriedade() == "Vencido"){
+        } if (propriedade.getStatusPropriedade().equalsIgnoreCase("Vencido")){
             mccbSituacao.setValor(4);
-        } else if (propriedade.getStatusPropriedade() == "Levar RFB"){
+        } if (propriedade.getStatusPropriedade().equalsIgnoreCase("Levar RFB")){
             mccbSituacao.setValor(5);
         } 
         mcsnAtivo.setValor(propriedade.getAtivoPropriedade() == 'S' ? 1 : 2);

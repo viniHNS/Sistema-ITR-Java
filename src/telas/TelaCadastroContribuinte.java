@@ -20,7 +20,7 @@ public class TelaCadastroContribuinte extends TelaCadastro{
     };
     private MeuCampoTexto mctNome = new MeuCampoTexto(50, "Nome", true);
     private MeuCampoComboBox mcsnAtivo = new MeuCampoComboBox("Ativo", new Object[][] {{1, "Sim"}, {2, "Não"}}, true);
-    private MeuCampoNumero mcnCPF = new MeuCampoNumero(10, "CPF", true);
+    private MeuCampoNumero mcnCPF = new MeuCampoNumero(10, "CPF/CNPJ", true);
     private MeuCampoNumero mcnTelefone = new MeuCampoNumero(10, "Telefone", false);
     private MeuCampoDBComboBox mccbCidade = new MeuCampoDBComboBox(true, CidadeDao.SQL_COMBOBOX, "Cidade");
     private MeuCampoTexto mctLogradouro = new MeuCampoTexto(40, "Logradouro", true);
@@ -85,7 +85,7 @@ public class TelaCadastroContribuinte extends TelaCadastro{
 
     @Override
     public boolean consultar() {
-        new TelaConsulta(this, "Consulta de Contribuinte", new String[]{"Código", "Nome", "CPF","Cidade", "Logradouro", "Numero", "Bairro", "Ativo"}, new int[]{100}, ContribuinteDao.SQL_COMBOBOX);
+        new TelaConsulta(this, "Consulta de Contribuinte", new String[]{"Código", "Nome", "CPF","Cidade", "Logradouro", "Numero", "Bairro", "Ativo"}, new int[]{150}, ContribuinteDao.SQL_COMBOBOX);
         return false;
     }
 

@@ -64,7 +64,7 @@ public class TelaCadastroPais extends TelaCadastro{
 
     @Override
     public boolean consultar() {
-        new TelaConsulta(this, "Consulta de Pais", new String []{"Código", "Nome", "Ativo"}, new int[]{200}, PaisDao.SQL_PESQUISAR);
+        new TelaConsulta(this, "Consulta de Pais", new String []{"Código", "Nome", "Ativo"}, new int[]{100}, PaisDao.SQL_PESQUISAR);
         return true;
     }
 

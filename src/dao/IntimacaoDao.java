@@ -12,7 +12,7 @@ public class IntimacaoDao {
     public final String SQL_ALTERAR = "UPDATE INTIMACAO SET NUMINTIMACAO = ?, NUMCONSTATACAO = ?, NUMINTIMACAOCONSTATACAO = ?, CODRASTREIOINTIMACAO = ?, DATAPOSTAGEMINTIMACAO = ?, DATAENTREGAINTIMACAO = ?, ATIVOINTIMACAO = ? WHERE IDINTIMACAO = ?";
     public final String SQL_EXCLUIR = "DELETE FROM INTIMACAO WHERE IDINTIMACAO = ?";
     public final String SQL_CONSULTAR = " SELECT * FROM INTIMACAO WHERE IDINTIMACAO = ?";
-    public final static String SQL_PESQUISAR = "SELECT * FROM Intimacao";
+    public final static String SQL_PESQUISAR = "SELECT IDINTIMACAO, NOMEPROPRIEDADE, NUMINTIMACAO, NUMCONSTATACAO, NUMINTIMACAOCONSTATACAO, CODRASTREIOINTIMACAO FROM INTIMACAO JOIN PROPRIEDADE ON INTIMACAO.IDPROPRIEDADE = PROPRIEDADE.IDPROPRIEDADE ORDER BY NOMEPROPRIEDADE";
     public final static String SQL_COMBOBOX = "SELECT IDINTIMACAO, NOMEPROPRIEDADE, NUMINTIMACAO, NUMCONSTATACAO, NUMINTIMACAOCONSTATACAO, CODRASTREIOINTIMACAO FROM INTIMACAO JOIN PROPRIEDADE ON INTIMACAO.IDPROPRIEDADE = PROPRIEDADE.IDPROPRIEDADE ORDER BY NOMEPROPRIEDADE";
 
     public boolean incluir(Intimacao intimacao){
@@ -26,7 +26,7 @@ public class IntimacaoDao {
             ps.setString(5, intimacao.getCodRastreioIntimacao());
             ps.setString(6, intimacao.getDataPostagemIntimacao());
             ps.setString(7, intimacao.getDataEntregaIntimacao());
-            ps.setInt(8, intimacao.getAtivoIntimacao());
+            ps.setString(8, "" + intimacao.getAtivoIntimacao());
             ps.setInt(9, intimacao.getIdPropriedade());
             ps.executeUpdate();
             return true;
@@ -47,7 +47,7 @@ public class IntimacaoDao {
             ps.setString(4, intimacao.getCodRastreioIntimacao());
             ps.setString(5, intimacao.getDataPostagemIntimacao());
             ps.setString(6, intimacao.getDataEntregaIntimacao());
-            ps.setInt(7, intimacao.getAtivoIntimacao());
+            ps.setString(7, "" + intimacao.getAtivoIntimacao());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -72,16 +72,17 @@ public class IntimacaoDao {
 
     public boolean consultar(Intimacao intimacao){
         try {
-            PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_EXCLUIR);
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_CONSULTAR);
             ps.setInt(1, intimacao.getIdIntimacao());
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
+                intimacao.setIdPropriedade(Integer.parseInt(rs.getString("idPropriedade")));
                 intimacao.setNumIntimacao(rs.getString("numIntimacao"));
                 intimacao.setNumConstatacao(rs.getString("numConstatacao"));
                 intimacao.setNumIntimacaoConstatacao(rs.getString("numIntimacaoConstatacao"));
                 intimacao.setCodRastreioIntimacao(rs.getString("codRastreioIntimacao"));
                 intimacao.setDataPostagemIntimacao(rs.getString("dataPostagemIntimacao"));
-
+                intimacao.setDataEntregaIntimacao(rs.getString("dataEntregaIntimacao"));
                 intimacao.setAtivoIntimacao(rs.getString("ativoIntimacao").charAt(0));
                 return true;
             } else {

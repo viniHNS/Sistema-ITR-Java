@@ -13,8 +13,8 @@ public class CidadeDao {
     public final String SQL_EXCLUIR = "DELETE FROM Cidade WHERE idCidade = ?";
     public final String SQL_CONSULTAR = "SELECT * FROM Cidade WHERE idCidade = ?";
     public final static String SQL_PESQUISAR = "SELECT IDCIDADE, NOMECIDADE, NOMEESTADO , CEPCIDADE, ATIVOCIDADE FROM CIDADE JOIN Estado ON Cidade.IdEstado = Estado.IdEstado";
-    public final static String SQL_COMBOBOX = "SELECT idCidade, nomeCidade, UfEstado, CepCidade, AtivoCidade FROM Cidade JOIN Estado ON Cidade.IdEstado = Estado.IdEstado ORDER BY NomeCidade";
-
+    public final static String SQL_COMBOBOX = "SELECT idCidade, nomeCidade || ' - ' || ufEstado FROM Cidade JOIN Estado ON Cidade.IdEstado = Estado.IdEstado ORDER BY NomeCidade";
+    
     public boolean incluir(Cidade cidade){
         try {
             cidade.setIdCidade(Conexao.getGenerator("G_CIDADE"));

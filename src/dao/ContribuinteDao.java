@@ -11,7 +11,7 @@ public class ContribuinteDao {
     public final String SQL_INCLUIR = "INSERT INTO CONTRIBUINTE VALUES (?,?,?,?,?,?,?,?,?,?)";
     public final String SQL_ALTERAR = "UPDATE CONTRIBUINTE SET nomeContribuinte = ?, telefoneContribuinte = ?, cpfCnpjContribuinte = ?, logradouroContribuinte = ?, numeroContribuinte = ?, bairroContribuinte = ?, complementoContribuinte = ?, ativoContribuinte = ? WHERE idContribuinte = ?";
     public final String SQL_EXCLUIR = "DELETE FROM CONTRIBUINTE WHERE idContribuinte = ?";
-    public final String SQL_CONSULTAR = "SELECT * FROM CONTRIBUINTE WHERE idContribuinte = ?";
+    public final String SQL_CONSULTAR = "SELECT * FROM CONTRIBUINTE WHERE idContribuinte = ? ORDER BY nomeContribuinte";
     public final static String SQL_PESQUISAR = "SELECT * FROM Contribuinte";
     public final static String SQL_COMBOBOX = "SELECT idContribuinte, nomeContribuinte, cpfCnpjContribuinte, nomeCidade, logradouroContribuinte, numeroContribuinte, bairroContribuinte, ativoContribuinte FROM Contribuinte JOIN Cidade ON Contribuinte.IdCidade = Cidade.IdCidade ORDER BY nomeContribuinte";
 
@@ -79,6 +79,7 @@ public class ContribuinteDao {
             ps.setInt(1, contribuinte.getIdContribuinte());
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
+                contribuinte.setIdCidade(Integer.parseInt(rs.getString("idCidade")));
                 contribuinte.setNomeContribuinte(rs.getString("nomeContribuinte"));
                 contribuinte.setCpfCnpjContribuinte(rs.getString("cpfCnpjContribuinte"));
                 contribuinte.setTelefoneContribuinte(rs.getString("telefoneContribuinte"));

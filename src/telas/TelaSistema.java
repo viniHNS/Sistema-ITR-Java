@@ -105,6 +105,6 @@ public class TelaSistema extends JFrame implements ActionListener {
         } else if (ae.getSource() == jmiPropriedade) {
             TelaCadastroPropriedade TelaCadastroPropriedade = new TelaCadastroPropriedade();
              jdp.add(TelaCadastroPropriedade);
-        }   
+        } 
     }    
 }

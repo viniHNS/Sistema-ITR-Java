@@ -12,8 +12,8 @@ public class PropriedadeDao {
     public final String SQL_ALTERAR = "UPDATE PROPRIEDADE SET NOMEPROPRIEDADE = ?, NIRFPROPRIEDADE = ?, AREATOTALPROPRIEDADE = ?, PARAMETROSELECAOPROPRIEDADE = ?, STATUSPROPRIEDADE = ?, ATIVOPROPRIEDADE = ? WHERE IDPROPRIEDADE = ?";
     public final String SQL_EXCLUIR = "DELETE FROM PROPRIEDADE WHERE IDPROPRIEDADE = ?";
     public final String SQL_CONSULTAR = " SELECT * FROM PROPRIEDADE WHERE IDPROPRIEDADE = ?";
-    public final static String SQL_PESQUISAR = "SELECT * FROM PROPRIEDADE";
-    public final static String SQL_COMBOBOX = "SELECT IDPROPRIEDADE, NOMEPROPRIEDADE, AREATOTALPROPRIEDADE, NIRFPROPRIEDADE, STATUSPROPRIEDADE, ATIVOPROPRIEDADE FROM PROPRIEDADE ORDER BY NOMEPROPRIEDADE";
+    public final static String SQL_PESQUISAR = "SELECT IDPROPRIEDADE, NOMEPROPRIEDADE, AREATOTALPROPRIEDADE, NIRFPROPRIEDADE, STATUSPROPRIEDADE, ATIVOPROPRIEDADE FROM PROPRIEDADE ORDER BY NOMEPROPRIEDADE";
+    public final static String SQL_COMBOBOX = "SELECT IDPROPRIEDADE, NOMEPROPRIEDADE || ' - ' || NOMECONTRIBUINTE FROM PROPRIEDADE JOIN CONTRIBUINTE ON PROPRIEDADE.IDCONTRIBUINTE = CONTRIBUINTE.IDCONTRIBUINTE ORDER BY NOMEPROPRIEDADE";
 
     public boolean incluir(Propriedade propriedade){
         try {
@@ -75,6 +75,7 @@ public class PropriedadeDao {
             ps.setInt(1, propriedade.getIdPropriedade());
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
+                propriedade.setIdContribuinte(Integer.parseInt(rs.getString("idContribuinte")));
                 propriedade.setNomePropriedade(rs.getString("nomePropriedade"));
                 propriedade.setNirfPropriedade(rs.getString("NirfPropriedade"));
                 propriedade.setAreaTotalPropriedade(rs.getString("AreaTotalPropriedade"));
